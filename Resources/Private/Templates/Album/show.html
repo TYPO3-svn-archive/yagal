@@ -10,11 +10,14 @@
 		<p>{album.filepath}</p>
 		<f:for each="{fotos}" as="foto">
 			<li>
-				<img src="{album.filepath}/{foto.url}"></img>,{foto.height},{foto.width} 
+				o:<img src="{album.filepath}{foto.originalUrl}"></img><br />
+				m:<img src="{album.filepath}{foto.maximalUrl}"></img><br />
+				n:<img src="{album.filepath}{foto.normalUrl}"></img><br />
+				t:<img src="{album.filepath}{foto.thumbUrl}"></img><br />
 			</li>
 		</f:for>
 		<p class="bodytext"><f:format.nl2br>{album.content}
-		
+
 		hallo</f:format.nl2br></p>
 		<p class="bodytext">By: {album.photographer.fullName}</p>
 		<f:render partial="albumTags" arguments="{album: album}"/>
