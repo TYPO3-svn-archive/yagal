@@ -146,7 +146,7 @@ $TCA['tx_yagal_domain_model_gallery'] = array(
 $TCA['tx_yagal_domain_model_album'] = array(
 	'ctrl' => $TCA['tx_yagal_domain_model_album']['ctrl'],
 	'interface' => array(
-		'showRecordFieldList' => 'hidden, title, date, photographer, filepath, highlight, content, tags, comments, related_albums'
+		'showRecordFieldList' => 'hidden, title, date, photographer, filepath, highlight, resize, content, tags, comments, related_albums'
 	),
 	'columns' => array(
 		'hidden' => array(
@@ -243,6 +243,13 @@ $TCA['tx_yagal_domain_model_album'] = array(
 				'minitems'      => 0
 			)
 		),
+		'resize' => array(
+			'exclude' => 1,
+			'label'   => 'LLL:EXT:yagal/Resources/Private/Language/locallang_db.xml:tx_yagal_domain_model_album.resize',
+			'config'  => array(
+				'type'          => 'check',
+			)
+		),
 		
 		'content' => array(
 			'exclude' => 1,
@@ -323,7 +330,7 @@ $TCA['tx_yagal_domain_model_album'] = array(
 		),
 	),
 	'types' => array(
-		'1' => array('showitem' => 'hidden, gallery, title, date, photographer, filepath, highlight, content, tags, comments, related_albums')
+		'1' => array('showitem' => 'hidden, gallery, title, date, photographer, filepath, highlight, resize, content, tags, comments, related_albums')
 	),
 	'palettes' => array(
 		'1' => array('showitem' => '')

@@ -49,6 +49,7 @@ CREATE TABLE tx_yagal_domain_model_album (
 	photographer int(255) DEFAULT '0' NOT NULL,
 	filepath varchar(255) DEFAULT '' NOT NULL,
 	highlight varchar(255) DEFAULT '' NOT NULL,
+	resize int(11) DEFAULT '0' NOT NULL,
 	content text NOT NULL,
 	tags int(11) unsigned DEFAULT '0' NOT NULL,
 	comments int(11) unsigned DEFAULT '0' NOT NULL,

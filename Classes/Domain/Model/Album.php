@@ -1,26 +1,26 @@
 <?php
 /***************************************************************
-*  Copyright notice
-*
-*  (c) 2009 Jochen Rau <jochen.rau@typoplanet.de>
-*  All rights reserved
-*
-*  This script is part of the TYPO3 project. The TYPO3 project is
-*  free software; you can redistribute it and/or modify
-*  it under the terms of the GNU General Public License as published by
-*  the Free Software Foundation; either version 2 of the License, or
-*  (at your option) any later version.
-*
-*  The GNU General Public License can be found at
-*  http://www.gnu.org/copyleft/gpl.html.
-*
-*  This script is distributed in the hope that it will be useful,
-*  but WITHOUT ANY WARRANTY; without even the implied warranty of
-*  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-*  GNU General Public License for more details.
-*
-*  This copyright notice MUST APPEAR in all copies of the script!
-***************************************************************/
+ *  Copyright notice
+ *
+ *  (c) 2009 Jochen Rau <jochen.rau@typoplanet.de>
+ *  All rights reserved
+ *
+ *  This script is part of the TYPO3 project. The TYPO3 project is
+ *  free software; you can redistribute it and/or modify
+ *  it under the terms of the GNU General Public License as published by
+ *  the Free Software Foundation; either version 2 of the License, or
+ *  (at your option) any later version.
+ *
+ *  The GNU General Public License can be found at
+ *  http://www.gnu.org/copyleft/gpl.html.
+ *
+ *  This script is distributed in the hope that it will be useful,
+ *  but WITHOUT ANY WARRANTY; without even the implied warranty of
+ *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ *  GNU General Public License for more details.
+ *
+ *  This copyright notice MUST APPEAR in all copies of the script!
+ ***************************************************************/
 
 /**
  * A gallery album
@@ -40,7 +40,7 @@ class Tx_Yagal_Domain_Model_Album extends Tx_Extbase_DomainObject_AbstractEntity
 	 * @lazy
 	 */
 	protected $gallery;
-	
+
 	/**
 	 * @var string
 	 * @validate StringLength(minimum = 3, maximum = 50)
@@ -71,12 +71,17 @@ class Tx_Yagal_Domain_Model_Album extends Tx_Extbase_DomainObject_AbstractEntity
 	 * @var string
 	 */
 	protected $highlight;
-	
+
+	/**
+	 * @var int
+	 */
+	protected $resize;
+
 	/**
 	 * @var Tx_Extbase_Persistence_ObjectStorage<Tx_Yagal_Domain_Model_Tag>
 	 */
 	protected $tags;
-	
+
 	/**
 	 * @var Tx_Extbase_Persistence_ObjectStorage<Tx_Yagal_Domain_Model_Comment>
 	 * @lazy
@@ -88,7 +93,7 @@ class Tx_Yagal_Domain_Model_Album extends Tx_Extbase_DomainObject_AbstractEntity
 	 * @var Tx_Extbase_Persistence_ObjectStorage<Tx_Yagal_Domain_Model_Album>
 	 */
 	protected $relatedAlbums;
-	
+
 	/**
 	 * Constructs this album
 	 */
@@ -98,7 +103,7 @@ class Tx_Yagal_Domain_Model_Album extends Tx_Extbase_DomainObject_AbstractEntity
 		$this->relatedAlbums = new Tx_Extbase_Persistence_ObjectStorage();
 		$this->date = new DateTime();
 	}
-	
+
 	/**
 	 * Sets the gallery this album is part of
 	 *
@@ -189,7 +194,7 @@ class Tx_Yagal_Domain_Model_Album extends Tx_Extbase_DomainObject_AbstractEntity
 	public function removeTag(Tx_Yagal_Domain_Model_Tag $tag) {
 		$this->tags->detach($tag);
 	}
-	
+
 	/**
 	 * Remove all tags from this album
 	 *
@@ -258,6 +263,15 @@ class Tx_Yagal_Domain_Model_Album extends Tx_Extbase_DomainObject_AbstractEntity
 	}
 
 	/**
+	 * Getter for filepath
+	 *
+	 * @return string
+	 */
+	public function getFilepath() {
+		return $this->filepath;
+	}
+
+	/**
 	 * Getter for highlight
 	 *
 	 * @return string
@@ -266,11 +280,10 @@ class Tx_Yagal_Domain_Model_Album extends Tx_Extbase_DomainObject_AbstractEntity
 		return $this->highlight;
 	}
 
-
-		/**
-	 * Sets the filepath for this album
+	/**
+	 * Sets the highlight for this album
 	 *
-	 * @param string $filepatht
+	 * @param string $highlight
 	 * @return void
 	 */
 	public function setHighlight($highlight) {
@@ -278,14 +291,25 @@ class Tx_Yagal_Domain_Model_Album extends Tx_Extbase_DomainObject_AbstractEntity
 	}
 
 	/**
-	 * Getter for filepath
+	 * Getter for resize
 	 *
-	 * @return string
+	 * @return int
 	 */
-	public function getFilepath() {
-		return $this->filepath;
+	public function getResize() {
+		return $this->resize;
 	}
-/**
+
+	/**
+	 * Sets the resize for this album
+	 *
+	 * @param string $resize
+	 * @return void
+	 */
+	public function setResize($resize) {
+		$this->resize = $resize;
+	}
+	
+	/**
 	 * Setter for the comments to this album
 	 *
 	 * @param Tx_Extbase_Persistence_ObjectStorage $comments An Object Storage of related Comment instances
@@ -314,7 +338,7 @@ class Tx_Yagal_Domain_Model_Album extends Tx_Extbase_DomainObject_AbstractEntity
 	public function removeComment(Tx_Yagal_Domain_Model_Comment $commentToDelete) {
 		$this->comments->detach($commentToDelete);
 	}
-	
+
 	/**
 	 * Remove all comments from this album
 	 *
@@ -332,7 +356,7 @@ class Tx_Yagal_Domain_Model_Album extends Tx_Extbase_DomainObject_AbstractEntity
 	public function getComments() {
 		return clone $this->comments;
 	}
-	
+
 	/**
 	 * Setter for the related albums
 	 *
@@ -342,7 +366,7 @@ class Tx_Yagal_Domain_Model_Album extends Tx_Extbase_DomainObject_AbstractEntity
 	public function setRelatedAlbums(Tx_Extbase_Persistence_ObjectStorage $relatedAlbums) {
 		$this->relatedAlbums = $relatedAlbums;
 	}
-	
+
 	/**
 	 * Adds a related album
 	 *
@@ -352,7 +376,7 @@ class Tx_Yagal_Domain_Model_Album extends Tx_Extbase_DomainObject_AbstractEntity
 	public function addRelatedAlbum(Tx_Yagal_Domain_Model_Album $album) {
 		$this->relatedAlbums->attach($album);
 	}
-	
+
 	/**
 	 * Remove all related albums
 	 *
@@ -370,7 +394,7 @@ class Tx_Yagal_Domain_Model_Album extends Tx_Extbase_DomainObject_AbstractEntity
 	public function getRelatedAlbums() {
 		return clone $this->relatedAlbums;
 	}
-	
+
 	/**
 	 * Returns this album as a formatted string
 	 *
@@ -380,8 +404,8 @@ class Tx_Yagal_Domain_Model_Album extends Tx_Extbase_DomainObject_AbstractEntity
 		return $this->title . chr(10) .
 			' written on ' . $this->date->format('Y-m-d') . chr(10) .
 			' by ' . $this->photographer->getFullName() . chr(10) .
-			wordwrap($this->content, 70, chr(10)) . chr(10) .
-			implode(', ', $this->tags->toArray());
+		wordwrap($this->content, 70, chr(10)) . chr(10) .
+		implode(', ', $this->tags->toArray());
 	}
 }
 ?>

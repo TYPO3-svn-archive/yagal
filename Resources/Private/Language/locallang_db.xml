@@ -20,6 +20,7 @@
 			<label index="tx_yagal_domain_model_album.photographer">Photographer</label>
 			<label index="tx_yagal_domain_model_album.filepath">Filepath</label>
 			<label index="tx_yagal_domain_model_album.highlight">Highlight</label>
+			<label index="tx_yagal_domain_model_album.resize">Resize</label>
 			<label index="tx_yagal_domain_model_album.content">Content</label>
 			<label index="tx_yagal_domain_model_album.votes">Votes</label>
 			<label index="tx_yagal_domain_model_album.published">Published</label>
