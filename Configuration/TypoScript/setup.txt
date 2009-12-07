@@ -20,6 +20,7 @@ plugin.tx_yagal {
 	}
 }
 
+
  # Module configuration
 module.tx_yagal {
 	settings < plugin.tx_yagal.settings

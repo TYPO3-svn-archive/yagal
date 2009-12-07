@@ -85,7 +85,15 @@ class Tx_Yagal_Controller_AlbumController extends Tx_Extbase_MVC_Controller_Acti
 			$this->albumRepository->update($album);
 		}
 
+
 		$fotos = $this->getDir($album->getFilepath());
+                
+
+                $this->response->addAdditionalHeaderData('<link rel="stylesheet" href="'.t3lib_extMgm::siteRelPath('yagal').'Resources/Public/css/jd.gallery.css" type="text/css" media="screen" charset="utf-8" />');
+		$this->response->addAdditionalHeaderData('<script src="'.t3lib_extMgm::siteRelPath('yagal').'Resources/Public/Js/mootools-1.2.1-core-yc.js" type="text/javascript"></script>');
+		$this->response->addAdditionalHeaderData('<script src="'.t3lib_extMgm::siteRelPath('yagal').'Resources/Public/Js/mootools-1.2-more.js" type="text/javascript"></script>');
+		$this->response->addAdditionalHeaderData('<script src="'.t3lib_extMgm::siteRelPath('yagal').'Resources/Public/Js/jd.gallery.js" type="text/javascript"></script>');
+
 		$this->view->assign('fotos', $fotos);
 	}
 

@@ -22,7 +22,10 @@
 							<f:link.action action="show" controller="Album" arguments="{album: album, gallery: gallery}">{album.title}</f:link.action>
 						</dt>
 						<dd>{album.filepath}</dd>
-						<dd><img src="{album.highlight}"></img></dd>
+						<dd>
+                                                <f:link.action action="show" controller="Album" arguments="{album: album, gallery: gallery}">
+                                                    <img src="{album.highlight}" /></f:link.action>
+                                                </f:link.action</dd>
 						<dd><f:format.html>{album.content}</f:format.html></dd>
 						<dd><f:render partial="albumMetaData" arguments="{album: album}"/></dd>
 						<dd><f:render partial="albumTags" arguments="{album: album}"/></dd>
