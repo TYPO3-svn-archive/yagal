@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<T3locallang>
+	<meta type="array">
+		<type>database</type>
+		<description>Language labels for database tables/fields belonging to extension 'yagal'</description>
+	</meta>
+	<data type="array">
+		<languageKey index="default" type="array">
+			<label index="tx_yagal_domain_model_gallery">Gallery</label>
+			<label index="tx_yagal_domain_model_gallery.title">Gallery title</label>
+			<label index="tx_yagal_domain_model_gallery.description">Short description</label>
+			<label index="tx_yagal_domain_model_gallery.logo">Logo</label>
+			<label index="tx_yagal_domain_model_gallery.highlight">Highlight</label>
+			<label index="tx_yagal_domain_model_gallery.albums">Albums</label>
+			<label index="tx_yagal_domain_model_gallery.administrator">Administrator</label>
+			<label index="tx_yagal_domain_model_album">Album</label>
+			<label index="tx_yagal_domain_model_album.gallery">Related to</label>
+			<label index="tx_yagal_domain_model_album.title">Title</label>
+			<label index="tx_yagal_domain_model_album.date">Date</label>
+			<label index="tx_yagal_domain_model_album.photographer">Photographer</label>
+			<label index="tx_yagal_domain_model_album.filepath">Filepath</label>
+			<label index="tx_yagal_domain_model_album.highlight">Highlight</label>
+			<label index="tx_yagal_domain_model_album.content">Content</label>
+			<label index="tx_yagal_domain_model_album.votes">Votes</label>
+			<label index="tx_yagal_domain_model_album.published">Published</label>
+			<label index="tx_yagal_domain_model_album.tags">Tags</label>
+			<label index="tx_yagal_domain_model_album.comments">Comments</label>
+			<label index="tx_yagal_domain_model_album.related">Related albums</label>
+			<label index="tx_yagal_domain_model_person">Person</label>
+			<label index="tx_yagal_domain_model_person.firstname">Firstname</label>
+			<label index="tx_yagal_domain_model_person.lastname">Lastname</label>
+			<label index="tx_yagal_domain_model_person.email">E-Mail</label>
+			<label index="tx_yagal_domain_model_person.avatar">Avatar</label>
+			<label index="tx_yagal_domain_model_comment">Comment</label>
+			<label index="tx_yagal_domain_model_comment.date">Date</label>
+			<label index="tx_yagal_domain_model_comment.author">Author</label>
+			<label index="tx_yagal_domain_model_comment.email">Email</label>
+			<label index="tx_yagal_domain_model_comment.content">Content</label>
+			<label index="tx_yagal_domain_model_tag">Tag</label>
+			<label index="tx_yagal_domain_model_tag.name">Name</label>
+			<label index="tx_yagal_domain_model_tag.albums">Related albums</label>
+		</languageKey>
+	</data>
+</T3locallang>

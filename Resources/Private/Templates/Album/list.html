@@ -1,0 +1,44 @@
+<f:layout name="default" />
+
+<f:section name="content">
+	<div class="csc-header csc-header-n1"><h2 class="csc-firstHeader">Welcome to {gallery.title}</h2></div>
+	<p>{gallery.description} In order to start galleryging, read the <a href="#">Help section</a>.
+	<f:if condition="{gallery.administrator}">
+		<f:then>
+			If you have any further questions, feel free to contact the administrator {gallery.administrator.name}<f:if condition="{gallery.administrator.email}"> (<a href="mailto:{gallery.administrator.email}">{gallery.administrator.email})</a></f:if>.
+		</f:then>
+		<f:else>
+			There is currently no administrator assigned to this Gallery.
+		</f:else>
+	</f:if>
+	</p>
+	<div class="tx-galleryexample-list-container">
+		<f:if condition="{albums}">
+			<f:then>
+			<p><f:translate key="label_recent_albums">Below are albums:</f:translate> (<f:count subject="{albums}" />)</p>
+				<dl>
+					<f:for each="{albums}" as="album">
+						<dt>
+							<f:link.action action="show" controller="Album" arguments="{album: album, gallery: gallery}">{album.title}</f:link.action>
+						</dt>
+						<dd>{album.filepath}</dd>
+						<dd><img src="{album.highlight}"></img></dd>
+						<dd><f:format.crop maxCharacters="100">{album.content}</f:format.crop></dd>
+						<dd><f:render partial="albumMetaData" arguments="{album: album}"/></dd>
+						<dd><f:render partial="albumTags" arguments="{album: album}"/></dd>
+						<dd>
+							<f:link.action controller="Album" action="edit" arguments="{album : album, gallery : gallery}">edit</f:link.action>
+							&nbsp;<f:link.action controller="Album" action="delete" arguments="{album : album, gallery : gallery}">delete</f:link.action>
+							&nbsp;&nbsp;<f:link.action controller="Album" action="show" arguments="{album : album}"><f:translate key="read_more">read more &gt;&gt;</f:translate></f:link.action><br />
+						</dd>
+					</f:for>
+				</dl>
+			</f:then>
+			<f:else>
+				<p>This gallery currently doesn't contain any albums.</p>
+			</f:else>
+		</f:if>
+		<p><f:link.action action="new" controller="Album" arguments="{gallery : gallery}">Create a new Album</f:link.action>
+			<br /><f:link.action arguments="{gallery : gallery}" format="txt" target="_blank">Show albums as plain text</f:link.action></p>
+	</div>
+</f:section>

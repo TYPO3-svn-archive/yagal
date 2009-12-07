@@ -1,0 +1,21 @@
+<f:layout name="default" />
+
+<f:section name="iconButtons">
+	<f:be.buttons.icon uri="{f:uri.action(action:'index')}" icon="closedok" title="Cancel" />
+	<f:be.buttons.icon uri="javascript: document.gallery.submit();" icon="saveandclosedok" title="Save" />
+	<f:be.buttons.icon uri="{f:uri.action(action:'delete', arguments:{gallery: gallery})}" icon="deletedok" title="Delete this gallery" />
+</f:section>
+
+<f:section name="content">
+	<h2>Edit gallery "{gallery.title}"</h2>
+	<p class="bodytext">Edit the information about your gallery below:</p>
+	<f:render partial="formErrors" arguments="{for: 'gallery'}" />
+	<f:form method="album" action="update" name="gallery" object="{gallery}">
+		<label for="title">Title</label><br />
+		<f:form.textbox property="title" /><br />
+		<label for="description">Description</label><br />
+		<f:form.textarea property="description" rows="8" cols="46" /><br />
+		<label for="administrator">Administrator</label><br />
+		<f:form.select property="administrator" value="{gallery.administrator}" options="{administrators}" optionLabelField="name"><select><option>dummy</option></select></f:form.select><br />
+	</f:form>
+</f:section>

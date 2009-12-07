@@ -1,0 +1,36 @@
+<f:layout name="default" />
+
+<f:section name="iconButtons">
+	<f:be.buttons.icon uri="{f:uri.action(action:'index', controller:'Gallery')}" icon="closedok" title="Back" />
+	<f:be.buttons.icon uri="{f:uri.action(action:'new', arguments:{gallery: gallery})}" icon="new_el" title="Create new Album" />
+	<f:be.buttons.icon uri="{f:uri.action(action:'edit', controller:'Gallery', arguments:{gallery: gallery})}" icon="edit2" title="Edit this gallery" />
+</f:section>
+
+<f:section name="content">
+	<h2>Albums of Gallery &quot;{gallery.title}&quot;</h2>
+	<p class="bodytext">{gallery.description}</p>
+	<div class="tx-galleryexample-list-container">
+		<f:if condition="{gallery.albums}">
+			<f:then>
+				<ul>
+					<f:for each="{gallery.albums}" as="album">
+						<li>
+							<h3>
+								<f:link.action action="show" controller="Album" arguments="{album: album, gallery: album.gallery}">
+									{album.title}
+								</f:link.action>
+								<f:be.buttons.icon uri="{f:uri.action(action:'edit', arguments:{album: album, gallery: gallery})}" icon="edit2" title="Edit this Album" />
+							</h3>
+							<h4>{album.filepath}</h4>
+							<p class="bodytext"><f:format.crop maxCharacters="100">{album.content}</f:format.crop></p>
+						</li>
+					</f:for>
+				</ul>
+				<p><f:link.action arguments="{gallery : gallery}" format="txt" target="_blank"><strong>Show albums as text</strong> (experimental)</f:link.action></p>
+			</f:then>
+			<f:else>
+				<p>This gallery currently doesn't contain any albums.</p>
+			</f:else>
+		</f:if>
+	</div>
+</f:section>

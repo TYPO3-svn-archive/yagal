@@ -1,0 +1,33 @@
+ # Plugin configuration
+plugin.tx_yagal {
+	settings {
+		 # maximum number of albums to display at once
+		maxAlbums = 3
+	}
+	persistence {
+		storagePid = {$plugin.tx_yagal.persistence.storagePid}
+	}
+	view {
+		templateRootPath = {$plugin.tx_yagal.view.templateRootPath}
+		partialRootPath = {$plugin.tx_yagal.view.partialRootPath}
+		layoutRootPath = {$plugin.tx_yagal.view.layoutRootPath}
+	}
+	# This is an example how to modify the translation
+	_LOCAL_LANG {
+		default {
+			read_more = more >>
+		}
+	}
+}
+
+ # Module configuration
+module.tx_yagal {
+	settings < plugin.tx_yagal.settings
+	persistence < plugin.tx_yagal.persistence
+	view < plugin.tx_yagal.view
+	view {
+		templateRootPath = {$module.tx_yagal.view.templateRootPath}
+		partialRootPath = {$module.tx_yagal.view.partialRootPath}
+		layoutRootPath = {$module.tx_yagal.view.layoutRootPath}
+	}
+}

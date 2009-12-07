@@ -1,0 +1,21 @@
+<f:layout name="default" />
+
+<f:section name="iconButtons">
+	<f:be.buttons.icon uri="{f:uri.action(action:'index', arguments:{gallery: gallery})}" icon="closedok" title="Cancel" />
+	<f:be.buttons.icon uri="javascript: document.newAlbum.submit();" icon="saveandclosedok" title="Save" />
+</f:section>
+
+<f:section name="content">
+	<h2>Create a new Album for Gallery &quot;{gallery.title}&quot;</h2>
+	<f:render partial="formErrors" arguments="{for: 'newAlbum'}" />
+	<f:form method="album" controller="Album" action="create"  name="newAlbum" object="{newAlbum}" arguments="{gallery : gallery}">
+		<label for="photographer">Photographer <span class="required">(required)</span></label><br />
+		<f:form.select property="photographer" options="{photographers}" optionValueField="uid" optionLabelField="fullName"><select><option>dummy</option></select></f:form.select><br />
+		<label for="title">Title <span class="required">(required)</span></label><br />
+		<f:form.textbox property="title" /><br />
+		<label for="title">Filepath <span class="required">(required)</span></label><br />
+		<f:form.textbox property="filepath" /><br />
+		<label for="content">Content <span class="required">(required)</span></label><br />
+		<f:form.textarea property="content" rows="8" cols="46" /><br /><br />
+	</f:form>
+</f:section>

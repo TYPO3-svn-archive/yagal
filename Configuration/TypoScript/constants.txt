@@ -1,0 +1,24 @@
+plugin.tx_yagal {
+	view {
+		 # cat=plugin.tx_yagal/file; type=string; label=Path to template root (FE)
+		templateRootPath = EXT:yagal/Resources/Private/Templates/
+		 # cat=plugin.tx_yagal/file; type=string; label=Path to template partials (FE)
+		partialRootPath = EXT:yagal/Resources/Private/Partials/
+		 # cat=plugin.tx_yagal/file; type=string; label=Path to template layouts (FE)
+		layoutRootPath = EXT:yagal/Resources/Private/Layouts/
+	}
+	persistence {
+		 # cat=plugin.tx_yagal//a; type=int+; label=Default storage PID
+		storagePid =
+	}
+}
+module.tx_yagal {
+	view {
+		 # cat=module.tx_yagal/file; type=string; label=Path to template root (BE)
+		templateRootPath = EXT:yagal/Resources/Private/Backend/Templates/
+		 # cat=plugin.tx_yagal/file; type=string; label=Path to template partials (BE)
+		partialRootPath = EXT:yagal/Resources/Private/Partials/
+		 # cat=plugin.tx_yagal/file; type=string; label=Path to template layouts (BE)
+		layoutRootPath = EXT:yagal/Resources/Private/Backend/Layouts/
+	}
+}

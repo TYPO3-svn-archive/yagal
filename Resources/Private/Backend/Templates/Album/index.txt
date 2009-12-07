@@ -1,0 +1,18 @@
+<pre>
+Yet another Gallery
+<f:if condition="{gallery.albums}"><f:then>
+---------------------------------------------------------------<f:for each="{gallery.albums}" as="album">
+{album.title}
+{album.filepath}
+
+<f:format.crop maxCharacters="70">{album.content}</f:format.crop>
+
+Published on <f:format.date format='d.m.Y'>{album.date}</f:format.date> by {album.photographer.fullName}
+Tags: <f:for each="{album.tags}" as="tag">[{tag.name}] </f:for>
+---------------------------------------------------------------</f:for>
+	</f:then>
+	<f:else>
+		No Albums available.
+	</f:else>
+</f:if>
+</pre>

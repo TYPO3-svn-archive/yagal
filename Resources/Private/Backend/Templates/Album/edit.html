@@ -1,0 +1,50 @@
+{namespace gallery=Tx_Yagal_ViewHelpers}
+<f:layout name="default" />
+
+<f:section name="iconButtons">
+	<f:be.buttons.icon uri="{f:uri.action(action:'index', arguments: {album : album, gallery: album.gallery})}" icon="closedok" title="Cancel" />
+	<f:be.buttons.icon uri="javascript: document.album.submit();" icon="saveandclosedok" title="Save" />
+	<f:be.buttons.icon uri="{f:uri.action(action: 'delete', arguments: {album : album, gallery: album.gallery})}" icon="deletedok" title="Delete this gallery" />
+</f:section>
+
+<f:section name="content">
+	<h2>Edit album "{album.title}"</h2>
+	<f:render partial="formErrors" arguments="{for: 'album'}" />
+	<f:form method="album" controller="Album" action="update" name="album" object="{album}" arguments="{gallery : gallery}" >
+		<label for="photographer">Photographer</label><br />
+		<f:form.select value="{album.photographer.uid}" name="photographer" options="{photographers}" optionValueField="uid" optionLabelField="fullName"><select><option>dummy</option></select></f:form.select><br />
+		<label for="title">Title</label><br />
+		<f:form.textbox property="title" /><br />
+		<label for="content">Content</label><br />
+		<f:form.textarea property="content" rows="8" cols="46" /><br /><br />
+		<label for="title">Filepath</label><br />
+		<f:form.textbox property="filepath" /><br />
+	</f:form>
+	<div class="tx-galleryexample-comment-list">
+		<h3>Comments</h3>
+		<f:if condition="{album.comments}">
+			<f:then>
+				<f:for each="{album.comments}" as="comment">
+					<div class="tx-galleryexample-comment">
+						<div class="tx-galleryexample-comment-info">
+							<span class="tx-galleryexample-comment-author">
+								<a href="mailto:{comment.email}">{comment.author}</a> albumed on
+								<span class="tx-galleryexample-date"><f:format.date>{comment.date}</f:format.date></span>
+							</span>
+						</div>
+						<div class="tx-galleryexample-comment-text">
+							<f:format.nl2br>{comment.content}</f:format.nl2br>
+							<f:be.buttons.icon uri="{f:uri.action(action:'delete', controller: 'Comment', arguments:{album: album, comment: comment})}" icon="deletedok" title="Delete Comment" />
+						</div>
+						<hr class="clear" />
+					</div>
+				</f:for>
+				<p>&nbsp;</p>
+				<p><f:link.action action="deleteAll" controller="Comment" arguments="{album: album}"><strong>Delete all Comments of this album</strong></f:link.action></p>
+			</f:then>
+			<f:else>
+				<p><em>There are no comments for this album.</em></p>
+			</f:else>
+		</f:if>
+	</div>
+</f:section>

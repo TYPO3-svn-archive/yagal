@@ -1,0 +1,31 @@
+<f:layout name="default" />
+
+<f:section name="iconButtons">
+	<f:be.buttons.icon uri="{f:uri.action(action:'new')}" icon="new_el" title="Create new Gallery" />
+</f:section>
+
+<f:section name="content">
+	<f:if condition="{gallerys}">
+		<f:then>
+			<p class="bodytext">Here is a list of gallerys:</p>
+			<ul>
+				<f:for each="{gallerys}" as="gallery">
+					<li>
+						<h3>
+							<f:link.action action="index" controller="Album" arguments="{gallery: gallery}" title="Edit this Gallery">
+								{gallery.title} (<f:count subject="{gallery.albums}" />)
+							</f:link.action>
+							
+							<f:be.buttons.icon uri="{f:uri.action(action:'edit', arguments:{gallery: gallery})}" icon="edit2" title="Edit this gallery" />
+						</h3>
+						<p><f:format.nl2br>{gallery.description}</f:format.nl2br></p>
+					</li>
+				</f:for>
+			</ul>
+			<p><f:link.action action="deleteAll">Delete all Gallerys [!!!]</f:link.action></p>
+		</f:then>
+		<f:else>
+			<p><f:link.action action="populate">Create example data</f:link.action></p>
+		</f:else>
+	</f:if>
+</f:section>
