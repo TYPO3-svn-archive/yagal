@@ -27,12 +27,12 @@
  * A repository for Albums
  */
 class Tx_Yagal_Domain_Repository_AlbumRepository extends Tx_Extbase_Persistence_Repository {
-	
+
 	public function remove($album) {
 		$album->removeAllTags();
 		parent::remove($album);
 	}
-	
+
 	/**
 	 * Finds all albums by the specified gallery
 	 *
@@ -105,7 +105,7 @@ class Tx_Yagal_Domain_Repository_AlbumRepository extends Tx_Extbase_Persistence_
 			->setLimit((integer)$limit)
 			->execute();
 	}
-	
+
 	/**
 	 * Finds most recent albums by the specified gallery
 	 *
@@ -117,10 +117,10 @@ class Tx_Yagal_Domain_Repository_AlbumRepository extends Tx_Extbase_Persistence_
 		$query = $this->createQuery();
 		$where = '1=1';
 		$from = '';
-		
+
 		if ($tags) {
 			if ($where != '') $where .= ' AND ';
-			
+
 			$tags = split(',', $tags);
 			$tagWhere = '';
 			foreach ($tags as $tag) {
@@ -131,28 +131,28 @@ class Tx_Yagal_Domain_Repository_AlbumRepository extends Tx_Extbase_Persistence_
 				tx_yagal_album_tag_mm on tx_yagal_album_tag_mm.uid_local = tx_yagal_domain_model_album.uid inner join
 				tx_yagal_domain_model_tag on tx_yagal_album_tag_mm.uid_foreign = tx_yagal_domain_model_tag.uid';
 			$where .= '('.$tagWhere.')';
-			
+
 		}
 
 		if ($gallery) {
 			if ($where != '') $where .= ' AND ';
 			$where .= 'tx_yagal_domain_model_album.gallery = '.$gallery;
 		}
-			
+
 		$query->setOrderings(array('date' => Tx_Extbase_Persistence_QueryInterface::ORDER_DESCENDING));
 		$query->setLimit((integer)$limit);
 		$statement = 'select distinct
-				tx_yagal_domain_model_album.* 
-			from 
+				tx_yagal_domain_model_album.*
+			from
 				tx_yagal_domain_model_album '. $from . '
 			where '.$where.'
 			order by tx_yagal_domain_model_album.date';
-		echo $statement; 
+		//echo $statement;
 		$query->statement($statement);
-		
+
 		return $query->execute();
 	}
-	
-	
+
+
 }
 ?>

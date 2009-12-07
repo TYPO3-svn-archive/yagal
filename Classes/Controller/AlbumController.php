@@ -1,27 +1,27 @@
 <?php
 
 /***************************************************************
-*  Copyright notice
-*
-*  (c) 2009 Jochen Rau <jochen.rau@typoplanet.de>
-*  All rights reserved
-*
-*  This script is part of the TYPO3 project. The TYPO3 project is
-*  free software; you can redistribute it and/or modify
-*  it under the terms of the GNU General Public License as published by
-*  the Free Software Foundation; either version 2 of the License, or
-*  (at your option) any later version.
-*
-*  The GNU General Public License can be found at
-*  http://www.gnu.org/copyleft/gpl.html.
-*
-*  This script is distributed in the hope that it will be useful,
-*  but WITHOUT ANY WARRANTY; without even the implied warranty of
-*  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-*  GNU General Public License for more details.
-*
-*  This copyright notice MUST APPEAR in all copies of the script!
-***************************************************************/
+ *  Copyright notice
+ *
+ *  (c) 2009 Jochen Rau <jochen.rau@typoplanet.de>
+ *  All rights reserved
+ *
+ *  This script is part of the TYPO3 project. The TYPO3 project is
+ *  free software; you can redistribute it and/or modify
+ *  it under the terms of the GNU General Public License as published by
+ *  the Free Software Foundation; either version 2 of the License, or
+ *  (at your option) any later version.
+ *
+ *  The GNU General Public License can be found at
+ *  http://www.gnu.org/copyleft/gpl.html.
+ *
+ *  This script is distributed in the hope that it will be useful,
+ *  but WITHOUT ANY WARRANTY; without even the implied warranty of
+ *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ *  GNU General Public License for more details.
+ *
+ *  This copyright notice MUST APPEAR in all copies of the script!
+ ***************************************************************/
 
 /**
  * The albums controller for the Gallery package
@@ -35,6 +35,7 @@ class Tx_Yagal_Controller_AlbumController extends Tx_Extbase_MVC_Controller_Acti
 	 * @var Tx_Yagal_Domain_Model_AlbumRepository
 	 */
 	protected $albumRepository;
+	private $forceResize = false;
 
 	/**
 	 * Initializes the current action
@@ -45,7 +46,7 @@ class Tx_Yagal_Controller_AlbumController extends Tx_Extbase_MVC_Controller_Acti
 		$this->albumRepository = t3lib_div::makeInstance('Tx_Yagal_Domain_Repository_AlbumRepository');
 		$this->personRepository = t3lib_div::makeInstance('Tx_Yagal_Domain_Repository_PersonRepository');
 		$this->cObj=t3lib_div::makeInstance('tslib_cObj');
-		
+
 	}
 
 	/**
@@ -55,14 +56,13 @@ class Tx_Yagal_Controller_AlbumController extends Tx_Extbase_MVC_Controller_Acti
 	 * @return string
 	 */
 	public function indexAction(Tx_Yagal_Domain_Model_Gallery $gallery) {
-		$this->
 		$this->view->assign('gallery', $gallery);
 		$this->view->assign('recentAlbums', $this->albumRepository->findRecentByGallery($gallery, $this->settings['maxAlbums']));
 	}
-	
+
 	public function listAction() {
 		$albums = array();
-		
+
 		$this->view->assign('albums', $this->albumRepository->findAlbums($this->settings['gallery'], $this->settings['tags']) );
 	}
 
@@ -77,58 +77,76 @@ class Tx_Yagal_Controller_AlbumController extends Tx_Extbase_MVC_Controller_Acti
 	public function showAction(Tx_Yagal_Domain_Model_Album $album, Tx_Yagal_Domain_Model_Comment $newComment = NULL) {
 		$this->view->assign('album', $album);
 		$this->view->assign('newComment', $newComment);
-		
-		
-		
-		
-		
+
+		// force resizing
+		if ($album->getResize()) {
+			$this->forceResize = true;
+			$album->setResize(0);
+			$this->albumRepository->update($album);
+		}
+
 		$fotos = $this->getDir($album->getFilepath());
-		
-		
 		$this->view->assign('fotos', $fotos);
-		
-		
 	}
-	
+
 	private function resize($file, $dir, $w, $h) {
-		$img = array();
-		// Pfad zur Datei
-		//echo $dir.  $file;
-		//echo '<br>';
-		$img['file'] = $dir.  $file;
+		$resize = false;
 
-		// Auslesen der maximalen Bildbreite, z.B. 600 (Pixel)
-		$img['file.']['maxW'] = $w;
-		$img['file.']['maxH'] = $h;
+		// check if file exist
+		$files = t3lib_div::getFilesInDir($dir .'sized/'.$w.'.'.$h.'/');
+		if (!t3lib_div::inArray($files, $file)) {
+			// file not exists need to be resized
+			$resize = true;
+		}
 
-		//echo 'thumb:'.$file;
-		// Erstellen des skalierten Bildes, hier Zuweisung zu einem Template Marker
-		$sizedFile = $this->cObj->IMG_RESOURCE($img);
+		// need to resize?
+		if ($this->forceResize || $resize) {
+			$img = array();
+			$img['file'] = $dir.  $file;
+			$img['file.']['maxW'] = $w;
+			$img['file.']['maxH'] = $h;
 
-		//echo PATH_site. $sizedFile, PATH_site. $dir .'s/'.$w.'.'.$h.'/'. $file;
-		//echo '<br>';
-		
-		t3lib_div::mkdir_deep(PATH_site. $dir, 's');
-		t3lib_div::mkdir_deep(PATH_site. $dir.'s/', $img['file.']['maxW'].'.'.$img['file.']['maxH'] );
-		t3lib_div::upload_copy_move(PATH_site. $sizedFile, PATH_site. $dir .'s/'.$w.'.'.$h.'/'. $file);
+			$sizedFile = $this->cObj->IMG_RESOURCE($img);
+
+			// make sized/ dir
+			t3lib_div::mkdir_deep(PATH_site. $dir, 'sized');
+			// make w.h/ dir
+			t3lib_div::mkdir_deep(PATH_site. $dir.'sized/', $img['file.']['maxW'].'.'.$img['file.']['maxH'] );
+
+			// move the file
+			t3lib_div::upload_copy_move(PATH_site. $sizedFile, PATH_site. $dir .'sized/'.$w.'.'.$h.'/'. $file);
+		}
 
 	}
-	
+
 	private function getDir($dir) {
 		$res = array();
 		$list = t3lib_div::getFilesInDir($dir , '', 0, '1');
-		
-		
-		
+
+
+
 		//var_export( $list);
 		if ($list) {
 			foreach ($list as $item) {
-				$this->resize($item, $dir, 100, 100);
-				$foto = array(
-					"url" => $item,
-					"height" => "123",
-					"width" => "321"
-				);
+
+				$originalUrl = $item;
+				$size = $this->getSize($this->settings['maxSize']);
+				$this->resize($item, $dir, $size['w'], $size['h']);
+				$maximalUrl = 'sized/'.$size['w'].'.'.$size['h'].'/'.$item;
+
+				$size = $this->getSize($this->settings['normalSize']);
+				$this->resize($item, $dir, $size['w'], $size['h']);
+				$normalUrl = 'sized/'.$size['w'].'.'.$size['h'].'/'.$item;
+
+				$size = $this->getSize($this->settings['thumbSize']);
+				$this->resize($item, $dir, $size['w'], $size['h']);
+				$thumbUrl = 'sized/'.$size['w'].'.'.$size['h'].'/'.$item;
+
+				$foto = array('originalUrl' => $item,
+					 'maximalUrl' => $maximalUrl,
+					'normalUrl' => $normalUrl,
+				'thumbUrl' => $thumbUrl);
+
 				array_push($res, $foto);
 			}
 		}
@@ -136,7 +154,19 @@ class Tx_Yagal_Controller_AlbumController extends Tx_Extbase_MVC_Controller_Acti
 		return $res;
 
 	}
-	
+
+	private function getSize($size) {
+		$w = 0;
+		$h = 0;
+		if ($size) {
+			$sizes = explode("*", $size);
+			$w = intval($sizes[0]);
+			$h = intval($sizes[1]);
+		}
+
+		return array('w' => $w, 'h' => $h);
+	}
+
 
 	/**
 	 * Displays a form for creating a new album

@@ -72,7 +72,7 @@ $TCA['tx_yagal_domain_model_gallery'] = array(
 				'cols' => 80,
 			),
 			'defaultExtras' => 'richtext[*]'
-			
+
 		),
 		'highlight' => array(
 			'exclude' => 1,
@@ -86,7 +86,8 @@ $TCA['tx_yagal_domain_model_gallery'] = array(
 				'maxitems'      => 1,
 				'minitems'      => 0
 			)
-		),		'albums' => array(
+		),
+		'albums' => array(
 			'exclude' => 1,
 			'label'   => 'LLL:EXT:yagal/Resources/Private/Language/locallang_db.xml:tx_yagal_domain_model_gallery.albums',
 			'config' => array(
@@ -102,8 +103,8 @@ $TCA['tx_yagal_domain_model_gallery'] = array(
 				),
 			)
 		),
-		'administrator' => Array (		
-			'exclude' => 1,		
+		'administrator' => Array (
+			'exclude' => 1,
 			'label'   => 'LLL:EXT:yagal/Resources/Private/Language/locallang_db.xml:tx_yagal_domain_model_gallery.administrator',
 			'config' => Array (
 				'type' => 'select',
@@ -156,15 +157,15 @@ $TCA['tx_yagal_domain_model_album'] = array(
 				'type' => 'check'
 			)
 		),
-		'gallery' => Array (		
-			'exclude' => 1,		
+		'gallery' => Array (
+			'exclude' => 1,
 			'label'   => 'LLL:EXT:yagal/Resources/Private/Language/locallang_db.xml:tx_yagal_domain_model_album.gallery',
 			'config' => Array (
 				'type' => 'select',
 				'foreign_table' => 'tx_yagal_domain_model_gallery',
 				'maxitems' => 1,
 			)
-		),		
+		),
 		'title' => array(
 			'exclude' => 0,
 			'label'   => 'LLL:EXT:yagal/Resources/Private/Language/locallang_db.xml:tx_yagal_domain_model_album.title',
@@ -250,7 +251,7 @@ $TCA['tx_yagal_domain_model_album'] = array(
 				'type'          => 'check',
 			)
 		),
-		
+
 		'content' => array(
 			'exclude' => 1,
 			'label'   => 'LLL:EXT:yagal/Resources/Private/Language/locallang_db.xml:tx_yagal_domain_model_album.content',
@@ -399,9 +400,9 @@ $TCA['tx_yagal_domain_model_comment'] = array(
 				'max'  => 256
 			)
 		),
-		'album' => array(		
+		'album' => array(
 			'config' => array(
-				'type' => 'passthrough',	
+				'type' => 'passthrough',
 			)
 		),
 	),

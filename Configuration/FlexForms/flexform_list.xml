@@ -111,7 +111,6 @@
 						<TCEforms>
 							<label>Page for Show</label>
 							<config>
-
 								<type>group</type>
 								<internal_type>db</internal_type>
 								<allowed>pages</allowed>
@@ -121,6 +120,40 @@
 							</config>
 						</TCEforms>
 					</settings.forceResizing>
+					<settings.maxSize>
+						<TCEforms>
+							<label>Maximum Size</label>
+							<config>
+								<type>input</type>
+								<size>20</size>
+								<eval>string</eval>
+								<default></default>
+							</config>
+						</TCEforms>
+					</settings.maxSize>
+					<settings.normalSize>
+						<TCEforms>
+							<label>Normal Size</label>
+							<config>
+								<type>input</type>
+								<size>20</size>
+								<eval>string</eval>
+								<default></default>
+							</config>
+						</TCEforms>
+					</settings.normalSize>
+					<settings.thumbSize>
+						<TCEforms>
+							<label>Thumbnail Size</label>
+							<config>
+								<type>input</type>
+								<size>20</size>
+								<eval>string</eval>
+								<default></default>
+							</config>
+						</TCEforms>
+					</settings.thumbSize>
+
 				</el>
 			</ROOT>
 		</sDEF>
