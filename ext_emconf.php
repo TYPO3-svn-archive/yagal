@@ -13,7 +13,7 @@
 $EM_CONF[$_EXTKEY] = array(
 	'title' => 'A Yet another Gallery for the Extbase Framework',
 	'description' => 'An example extension demonstrating the features of the Extbase Framework. It is the back-ported and tweaked Yet another Gallery package of FLOW3. Have fun playing with it!',
-	'category' => 'example',
+	'category' => 'plugin',
 	'shy' => 0,
 	'version' => '1.0.0',
 	'dependencies' => '',

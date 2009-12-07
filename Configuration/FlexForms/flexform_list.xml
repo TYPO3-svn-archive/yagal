@@ -7,31 +7,6 @@
 				</TCEforms>
 				<type>array</type>
 				<el>
-					<!--				<switchableControllerActions>-->
-					<!--						<TCEforms>-->
-					<!--							<label>Overwrite default action (example)</label>-->
-					<!--							<config>-->
-					<!--								<type>select</type>-->
-					<!--								<items type="array">-->
-					<!--									<numIndex index="0" type="array">-->
-					<!--										<numIndex index="0">Gallery</numIndex>-->
-					<!--
-						<numIndex index="1">Gallery->index; Gallery->flashMessages;
-						Gallery->setup</numIndex>
-					-->
-					<!--									</numIndex>-->
-					<!--									<numIndex index="1" type="array">-->
-					<!--										<numIndex index="0">Album</numIndex>-->
-					<!--										<numIndex index="1">Album->list</numIndex>-->
-					<!--									</numIndex>-->
-					<!--								</items>-->
-					<!--								<minitems>0</minitems>-->
-					<!--								<maxitems>1</maxitems>-->
-					<!--								<size>1</size>-->
-					<!--							</config>-->
-					<!--						</TCEforms>-->
-					<!--					</switchableControllerActions>-->
-
 					<settings.maxAlbums>
 						<TCEforms>
 							<label>Max. number of albums to display at once</label>
