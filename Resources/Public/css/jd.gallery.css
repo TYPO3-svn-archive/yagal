@@ -5,7 +5,16 @@
 	z-index:5;
 	border: 1px solid #000;
 }
-
+#myCarousel
+{
+    text-align: left;
+    margin: 0 auto;
+    float: left; /* Same as your gallery is set to */
+    width:462px; /* Adjust this to your picture width + 2 */
+    height:116px;
+    overflow:hidden;
+    background: #000000;
+}
 .jdGallery a
 {
 	outline:0;

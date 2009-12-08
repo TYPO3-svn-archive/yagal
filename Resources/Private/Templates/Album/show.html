@@ -12,8 +12,13 @@
         <script type="text/javascript">
             function startGallery() {
                 var myGallery = new gallery($('myGallery'), {
-                    timed: true
+                    timed: true,
+                    thumbCloseCarousel: false,
+                    carouselElement: 'myCarousel'
+
                 });
+                 myGallery.showCarousel();
+
             }
             window.addEvent('domready',startGallery);
         </script>
@@ -34,6 +39,8 @@
 			</li>-->
             </f:for>
         </div>
+        <div id="myCarousel" class="jdGallery">
+</div>
         <p class="bodytext"><f:format.html>{album.content}</f:format.html></p>
         <p class="bodytext">By: {album.photographer.fullName}</p>
         <f:render partial="albumTags" arguments="{album: album}"/>

@@ -100,7 +100,8 @@ var gallery = {
 		useHistoryManager: false,
 		customHistoryKey: false,
 		/* Plugins: ReMooz */
-		useReMooz: false
+		useReMooz: false,
+                carouselElement: false
 	},
 	initialize: function(element, options) {
 		this.setOptions(options);
@@ -374,7 +375,8 @@ var gallery = {
 		var carouselElement;
 		if (!this.options.useExternalCarousel)
 		{
-			var carouselContainerElement = new Element('div').addClass('carouselContainer').injectInside(this.galleryElement);
+                        var carouselElementId = (this.options.carouselElement) ? this.options.carouselElement : this.galleryElement;
+			var carouselContainerElement = new Element('div').addClass('carouselContainer').injectInside(carouselElementId);
 			this.carouselContainer = new Fx.Morph(carouselContainerElement, {transition: Fx.Transitions.Expo.easeOut});
 			this.carouselContainer.normalHeight = carouselContainerElement.offsetHeight;
 			this.carouselContainer.set({'opacity': this.options.carouselMinimizedOpacity, 'top': (this.options.carouselMinimizedHeight - this.carouselContainer.normalHeight)});
