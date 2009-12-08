@@ -133,18 +133,18 @@ class Tx_Yagal_Controller_AlbumController extends Tx_Extbase_MVC_Controller_Acti
 		if ($list) {
 			foreach ($list as $item) {
 
-				$originalUrl = $item;
+				$originalUrl = $dir.$item;
 				$size = $this->getSize($this->settings['maxSize']);
 				$this->resize($item, $dir, $size['w'], $size['h']);
-				$maximalUrl = 'sized/'.$size['w'].'.'.$size['h'].'/'.$item;
+				$maximalUrl = $dir.'sized/'.$size['w'].'.'.$size['h'].'/'.$item;
 
 				$size = $this->getSize($this->settings['normalSize']);
 				$this->resize($item, $dir, $size['w'], $size['h']);
-				$normalUrl = 'sized/'.$size['w'].'.'.$size['h'].'/'.$item;
+				$normalUrl = $dir.'sized/'.$size['w'].'.'.$size['h'].'/'.$item;
 
 				$size = $this->getSize($this->settings['thumbSize']);
 				$this->resize($item, $dir, $size['w'], $size['h']);
-				$thumbUrl = 'sized/'.$size['w'].'.'.$size['h'].'/'.$item;
+				$thumbUrl = $dir.'sized/'.$size['w'].'.'.$size['h'].'/'.$item;
 
 				$foto = array('originalUrl' => $item,
 					 'maximalUrl' => $maximalUrl,
