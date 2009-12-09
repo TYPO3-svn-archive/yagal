@@ -20,8 +20,8 @@ if (TYPO3_MODE === 'BE')	{
 		'tx_yagal_m1',	// Submodule key
 		'',						// Position
 		array(																			// An array holding the controller-action-combinations that are accessible
-			'Gallery' => 'index,show,new,create,delete,deleteAll,edit,update,populate',	// The first controller and its first action will be the default
-			'Album' => 'index,list,show,new,create,delete,edit,update',
+			'GalleryAdmin' => 'index,show,new,create,delete,deleteAll,edit,update,populate',	// The first controller and its first action will be the default
+			'AlbumAdmin' => 'index,list,show,new,create,delete,edit,update',
 			'Comment' => 'create,delete,deleteAll',
 			),
 		array(

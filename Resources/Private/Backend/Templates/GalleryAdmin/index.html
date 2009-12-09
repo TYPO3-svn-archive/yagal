@@ -14,7 +14,7 @@
 				<f:for each="{galleries}" as="gallery">
 					<li>
 						<h3>
-							<f:link.action action="index" controller="Album" arguments="{gallery: gallery}" title="Edit this Gallery">
+							<f:link.action action="index" controller="AlbumAdmin" arguments="{gallery: gallery}" title="Edit this Gallery">
 								{gallery.title} (<f:count subject="{gallery.albums}" />)
 							</f:link.action>
 							

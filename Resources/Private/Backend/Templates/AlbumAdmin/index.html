@@ -7,7 +7,7 @@
 </f:section>
 
 <f:section name="content">
-	<h2>Albums of Gallery &quot;{gallery.title}&quot;</h2>
+	<h2>AAAAAlbums of Gallery &quot;{gallery.title}&quot;</h2>
 	<p class="bodytext"><f:format.html>{gallery.description}</f:format.html></p>
 	<div class="tx-galleryexample-list-container">
 		<f:if condition="{gallery.albums}">
@@ -16,7 +16,7 @@
 					<f:for each="{gallery.albums}" as="album">
 						<li>
 							<h3>
-								<f:link.action action="show" controller="Album" arguments="{album: album, gallery: album.gallery}">
+								<f:link.action action="show" controller="AlbumAdmin" arguments="{album: album, gallery: album.gallery}">
 									{album.title}
 								</f:link.action>
 								<f:be.buttons.icon uri="{f:uri.action(action:'edit', arguments:{album: album, gallery: gallery})}" icon="edit2" title="Edit this Album" />

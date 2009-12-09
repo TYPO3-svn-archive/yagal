@@ -16,21 +16,13 @@
 					</dt>
 					<dd>
 						<f:format.html>{gallery.description}</f:format.html>
-						<f:link.action action="edit" arguments="{gallery : gallery}">Edit</f:link.action>
-						<f:link.action action="delete" arguments="{gallery : gallery}">Delete</f:link.action>
 					<dd>
 				</f:for>
 			</dl>
-			<p>
-				<f:link.action action="new">Create another gallery</f:link.action>
-				<br /><f:link.action action="populate">Create example data</f:link.action>
-				<br /><f:link.action action="deleteAll">Delete all Galleries [!!!]</f:link.action>
-			</p>
 		</f:then>
 		<f:else>
 			<p>
-				<strong><f:link.action action="new">Create your first gallery</f:link.action></strong>
-				<br /><f:link.action action="populate">Create example data</f:link.action>
+				<strong>No gallery found</strong>
 			</p>
 		</f:else>
 	</f:if>

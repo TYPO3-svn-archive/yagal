@@ -29,7 +29,7 @@
  * @version $Id:$
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License, version 2
  */
-class Tx_Yagal_Controller_AlbumController extends Tx_Extbase_MVC_Controller_ActionController {
+class Tx_Yagal_Controller_AlbumAdminController extends Tx_Extbase_MVC_Controller_ActionController {
 
 	/**
 	 * @var Tx_Yagal_Domain_Model_AlbumRepository
@@ -171,6 +171,74 @@ class Tx_Yagal_Controller_AlbumController extends Tx_Extbase_MVC_Controller_Acti
 	}
 
 
+	/**
+	 * Displays a form for creating a new album
+	 *
+	 * @param Tx_Yagal_Domain_Model_Gallery $gallery The gallery the album belogs to
+	 * @param Tx_Yagal_Domain_Model_Album $newAlbum A fresh album object taken as a basis for the rendering
+	 * @return string An HTML form for creating a new album
+	 * @dontvalidate $newAlbum
+	 */
+	public function newAction(Tx_Yagal_Domain_Model_Gallery $gallery, Tx_Yagal_Domain_Model_Album $newAlbum = NULL) {
+		$this->view->assign('photographers', $this->personRepository->findAll());
+		$this->view->assign('gallery', $gallery);
+		$this->view->assign('newAlbum', $newAlbum);
+	}
+
+	/**
+	 * Creates a new album
+	 *
+	 * @param Tx_Yagal_Domain_Model_Gallery $gallery The gallery the album belogns to
+	 * @param Tx_Yagal_Domain_Model_Album $newGallery A fresh Gallery object which has not yet been added to the repository
+	 * @return void
+	 */
+	public function createAction(Tx_Yagal_Domain_Model_Gallery $gallery, Tx_Yagal_Domain_Model_Album $newAlbum) {
+		$gallery->addAlbum($newAlbum);
+		$newAlbum->setGallery($gallery);
+		$this->flashMessages->add('Your new album was created.');
+		$this->redirect('index', NULL, NULL, array('gallery' => $gallery));
+	}
+
+	/**
+	 * Displays a form to edit an existing album
+	 *
+	 * @param Tx_Yagal_Domain_Model_Gallery $gallery The gallery the album belogs to
+	 * @param Tx_Yagal_Domain_Model_Album $album The original album
+	 * @return string Form for editing the existing gallery
+	 * @dontvalidate $album
+	 */
+	public function editAction(Tx_Yagal_Domain_Model_Gallery $gallery, Tx_Yagal_Domain_Model_Album $album) {
+		$this->view->assign('photographers', $this->personRepository->findAll());
+		$this->view->assign('gallery', $gallery);
+		$this->view->assign('album', $album);
+	}
+
+	/**
+	 * Updates an existing album
+	 *
+	 * @param Tx_Yagal_Domain_Model_Gallery $gallery The gallery the album belongs to
+	 * @param Tx_Yagal_Domain_Model_Album $album The existing, unmodified album
+	 * @param Tx_Yagal_Domain_Model_Album $updatedAlbum A clone of the original album with the updated values already applied
+	 * @return void
+	 */
+	public function updateAction(Tx_Yagal_Domain_Model_Gallery $gallery, Tx_Yagal_Domain_Model_Album $album) {
+		$this->albumRepository->update($album);
+		$this->flashMessages->add('Your album was updated.');
+		$this->redirect('index', NULL, NULL, array('gallery' => $gallery));
+	}
+
+	/**
+	 * Deletes an existing album
+	 *
+	 * @param Tx_Yagal_Domain_Model_Gallery $gallery The gallery the album belongs to
+	 * @param Tx_Yagal_Domain_Model_Album $album The album to be deleted
+	 * @return void
+	 */
+	public function deleteAction(Tx_Yagal_Domain_Model_Gallery $gallery, Tx_Yagal_Domain_Model_Album $album) {
+		$this->albumRepository->remove($album);
+		$this->flashMessages->add('Your album was removed.');
+		$this->redirect('index', NULL, NULL, array('gallery' => $gallery));
+	}
 
 }
 

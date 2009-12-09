@@ -30,7 +30,7 @@
 			<ul class="tx-galleryexample-related">
 				<f:for each="{album.relatedAlbums}" as="relatedAlbum">
 					<li>
-						<f:link.action action="show" controller="Album" arguments="{album: relatedAlbum, gallery: album.gallery}">{relatedAlbum.title}</f:link.action>
+						<f:link.action action="show" controller="AlbumAdmin" arguments="{album: relatedAlbum, gallery: album.gallery}">{relatedAlbum.title}</f:link.action>
 					</li>
 				</f:for>
 			</ul>
