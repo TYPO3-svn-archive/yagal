@@ -24,7 +24,7 @@
 ***************************************************************/
 
 /**
- * A repository for Gallerys
+ * A repository for Galleries
  */
 class Tx_Yagal_Domain_Repository_GalleryRepository extends Tx_Extbase_Persistence_Repository {			
 }

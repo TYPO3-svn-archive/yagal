@@ -9,7 +9,7 @@ plugin.tx_yagal {
 	}
 	persistence {
 		 # cat=plugin.tx_yagal//a; type=int+; label=Default storage PID
-		storagePid =
+		storagePid = 
 	}
 }
 module.tx_yagal {

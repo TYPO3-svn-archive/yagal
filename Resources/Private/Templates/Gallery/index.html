@@ -2,11 +2,11 @@
 <f:section name="content">
 	<p>Welcome to the Yet another Gallery! This installation serves as a demonstration for
 	basic development techniques used in Extbase/FLOW3 applications.</p>
-	<f:if condition="{gallerys}">
+	<f:if condition="{galleries}">
 		<f:then>
-			<p>Here is a list of gallerys:</p>
+			<p>Here is a list of galleries:</p>
 			<dl>
-				<f:for each="{gallerys}" as="gallery">
+				<f:for each="{galleries}" as="gallery">
 					<dt>
 						<f:link.action action="index" controller="Album"	arguments="{gallery : gallery}">
 							{gallery.title}<br /> (<f:count subject="{gallery.albums}" />)
@@ -24,7 +24,7 @@
 			<p>
 				<f:link.action action="new">Create another gallery</f:link.action>
 				<br /><f:link.action action="populate">Create example data</f:link.action>
-				<br /><f:link.action action="deleteAll">Delete all Gallerys [!!!]</f:link.action>
+				<br /><f:link.action action="deleteAll">Delete all Galleries [!!!]</f:link.action>
 			</p>
 		</f:then>
 		<f:else>

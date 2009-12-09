@@ -9,7 +9,7 @@
 			<label index="error.gallery_name_extbase">I'm sorry. "Extbase" can't be used as a gallery title.</label>
 			<label index="read_more">read more >></label>
 			<label index="label_recent_albums">Below are the most recent albums:</label>
-			<label index="title">Gallerys</label>
+			<label index="title">Galleries</label>
             <label index="function1">Function #1</label>
             <label index="function2">Function #2</label>
             <label index="function3">Function #3</label>

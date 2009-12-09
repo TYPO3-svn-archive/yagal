@@ -34,7 +34,7 @@ if (TYPO3_MODE === 'BE')	{
 	/**
 	 * Add labels for context sensitive help (CSH)
 	 */
-	t3lib_extMgm::addLLrefForTCAdescr('_MOD_web_GalleryExampleTxGalleryexampleM1', 'EXT:' . $_EXTKEY . '/Resources/Private/Language/locallang_csh.xml');
+	t3lib_extMgm::addLLrefForTCAdescr('_MOD_web_YagalTxYagalM1', 'EXT:' . $_EXTKEY . '/Resources/Private/Language/locallang_csh.xml');
 }
 
 t3lib_extMgm::addStaticFile($_EXTKEY, 'Configuration/TypoScript', 'Yet another Gallery');

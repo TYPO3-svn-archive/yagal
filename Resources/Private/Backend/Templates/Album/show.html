@@ -13,9 +13,18 @@
 			{album.title}
 		</h3>
 		<h4>{album.filepath}</h4>
-		<p class="bodytext"><f:format.nl2br>{album.content}</f:format.nl2br></p>
+		<p class="bodytext"><f:format.html>{album.content}</f:format.html></p>
 		<p class="bodytext">By: {album.photographer.fullName}</p>
 		<f:render partial="albumTags" arguments="{album: album}"/>
+		<div id="myGallery" style="width:830px; height: 600px">
+        <f:for each="{fotos}" as="foto">
+            <div class="imageElement">
+                <h3>Item 1 Title</h3>
+                <p><gallery:exif url="{foto.originalUrl}"/>Item 1 Description</p>
+                <img src="../{foto.thumbUrl}" class="thumbnail" />
+            </div>
+        </f:for>
+    </div>
 		<f:if condition="{album.relatedAlbums}">
 			<div>Related albums:</div>
 			<ul class="tx-galleryexample-related">

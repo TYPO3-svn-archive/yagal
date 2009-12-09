@@ -8,7 +8,7 @@
 
 <f:section name="content">
 	<h2>Albums of Gallery &quot;{gallery.title}&quot;</h2>
-	<p class="bodytext">{gallery.description}</p>
+	<p class="bodytext"><f:format.html>{gallery.description}</f:format.html></p>
 	<div class="tx-galleryexample-list-container">
 		<f:if condition="{gallery.albums}">
 			<f:then>
@@ -22,7 +22,7 @@
 								<f:be.buttons.icon uri="{f:uri.action(action:'edit', arguments:{album: album, gallery: gallery})}" icon="edit2" title="Edit this Album" />
 							</h3>
 							<h4>{album.filepath}</h4>
-							<p class="bodytext"><f:format.crop maxCharacters="100">{album.content}</f:format.crop></p>
+							<p class="bodytext"><f:format.crop maxCharacters="100"><f:format.html>{album.content}</f:format.html></f:format.crop></p>
 						</li>
 					</f:for>
 				</ul>

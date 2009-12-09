@@ -6,8 +6,8 @@
     </meta>
     <data type="array">
         <languageKey index="default" type="array">
-            <label index="mlang_tabs_tab">Gallerys</label>
-            <label index="mlang_labels_tabdescr">View/Modify Gallerys</label>
+            <label index="mlang_tabs_tab">Galleries</label>
+            <label index="mlang_labels_tabdescr">View/Modify Galleries</label>
         </languageKey>
     </data>
 </T3locallang>

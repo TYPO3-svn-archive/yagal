@@ -3,6 +3,10 @@ plugin.tx_yagal {
 	settings {
 		 # maximum number of albums to display at once
 		maxAlbums = 3
+		maxSize = 600*400
+		normalSize = 300*200
+		thumbSize = 100*100
+		
 	}
 	persistence {
 		storagePid = {$plugin.tx_yagal.persistence.storagePid}

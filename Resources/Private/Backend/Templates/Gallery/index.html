@@ -1,3 +1,4 @@
+{namespace gallery=Tx_Yagal_ViewHelpers}
 <f:layout name="default" />
 
 <f:section name="iconButtons">
@@ -5,11 +6,12 @@
 </f:section>
 
 <f:section name="content">
-	<f:if condition="{gallerys}">
+	<f:if condition="{galleries}">
 		<f:then>
-			<p class="bodytext">Here is a list of gallerys:</p>
+		
+			<p class="bodytext">Here is a list of galleries:</p>
 			<ul>
-				<f:for each="{gallerys}" as="gallery">
+				<f:for each="{galleries}" as="gallery">
 					<li>
 						<h3>
 							<f:link.action action="index" controller="Album" arguments="{gallery: gallery}" title="Edit this Gallery">
@@ -18,14 +20,15 @@
 							
 							<f:be.buttons.icon uri="{f:uri.action(action:'edit', arguments:{gallery: gallery})}" icon="edit2" title="Edit this gallery" />
 						</h3>
-						<p><f:format.nl2br>{gallery.description}</f:format.nl2br></p>
+						<img src="{gallery.highlight}" />
+						<p><f:format.html>{gallery.description}</f:format.html></p>
 					</li>
 				</f:for>
 			</ul>
-			<p><f:link.action action="deleteAll">Delete all Gallerys [!!!]</f:link.action></p>
+			<p><f:link.action action="deleteAll">Delete all galleries [!!!]</f:link.action></p>
 		</f:then>
 		<f:else>
-			<p><f:link.action action="populate">Create example data</f:link.action></p>
+			<p><f:link.action action="populate">Create example dataaaa</f:link.action></p>
 		</f:else>
 	</f:if>
 </f:section>
