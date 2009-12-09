@@ -146,7 +146,7 @@ class Tx_Yagal_Controller_AlbumController extends Tx_Extbase_MVC_Controller_Acti
 				$this->resize($item, $dir, $size['w'], $size['h']);
 				$thumbUrl = $dir.'sized/'.$size['w'].'.'.$size['h'].'/'.$item;
 
-				$foto = array('originalUrl' => $item,
+				$foto = array('originalUrl' => $originalUrl,
 					 'maximalUrl' => $maximalUrl,
 					'normalUrl' => $normalUrl,
 				'thumbUrl' => $thumbUrl);

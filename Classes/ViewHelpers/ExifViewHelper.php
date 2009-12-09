@@ -65,19 +65,21 @@ class Tx_Yagal_ViewHelpers_ExifViewHelper extends Tx_Fluid_Core_ViewHelper_Abstr
         // Function readEXIF() reads EXIF information of a given picture ($file could be 'fileadmin/pic.jpg')
         // thanks to wt_gallery
     function readEXIF($file) {
+    	$file = PATH_site.$file;
+    	//echo $file . "<br>";
+    	//echo file_exists($file) . "<br>";
         if(file_exists($file) && function_exists('exif_read_data')) { // if file exists AND EXIF function exists
+        	//echo 'reading EXIF';
             $info = exif_read_data($file); // get exif of image
             //$info = exif_read_data($file, 'EXIF', 1, 0); // get exif of image
 
             // make EXIF array
-            if ($info['Comments'] || $info['WINXP']['Comments']) $array['comment'] = ($info['Comments'] ? $info['Comments'] : $info['WINXP']['Comments']); // comments
-            if ($info['Title'] || $info['WINXP']['Title']) $array[title] = ($info['Title'] ? $info['Title'] : $info['WINXP']['Title']); // title
-            if ($info['Subject'] || $info['WINXP']['Subject']) $array['subject'] = ($info['Subject'] ? $info['Subject'] : $info['WINXP']['Subject']); // subject
-            if ($info['Author'] || $info['WINXP']['Author']) $array['author'] = ($info['Author'] ? $info['Author'] : $info['WINXP']['Author']); // author
-            if ($info['EXIF']['DateTimeOriginal']) $array['datetime'] = $info['EXIF']['DateTimeOriginal']; // recordtime original
-            if ($info['IFD0']['Make']) $array['make'] = $info['IFD0']['Make']; // camera brand
-            if ($info['IFD0']['Model']) $array['model'] = $info['IFD0']['Model']; // camera model
+            if ($info['FileName']) $array['FileName'] = ($info['FileName'] ? $info['FileName'] : $info['WINXP']['FileName']); // comments
+            if ($info['Make']) $array['Make'] = $info['Make']; // camera brand
+            if ($info['Model']) $array['Model'] = $info['Model']; // camera model
+            if ($info['ExposureTime'] || $info['ExposureTime']) $array['ExposureTime'] = ($info['ExposureTime'] ? $info['ExposureTime'] : $info['WINXP']['Title']); // title
 
+            //var_export($info);
             if (!empty($array)) return $array;
 
         }
