@@ -172,19 +172,6 @@ class Tx_Yagal_Controller_GalleryAdminController extends Tx_Extbase_MVC_Controll
 			$album->setContent('Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.');
 			$gallery->addAlbum($album);
 
-			$comment = new Tx_Yagal_Domain_Model_Comment;
-			$comment->setDate(new DateTime);
-			$comment->setAuthor('Peter Pan');
-			$comment->setEmail('peter.pan@example.com');
-			$comment->setContent('Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.');
-			$album->addComment($comment);
-
-			$comment = new Tx_Yagal_Domain_Model_Comment;
-			$comment->setDate(new DateTime('2009-03-19 23:44'));
-			$comment->setAuthor('John Smith');
-			$comment->setEmail('john@matrix.org');
-			$comment->setContent('Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.');
-			$album->addComment($comment);
 
 			$tag = new Tx_Yagal_Domain_Model_Tag('MVC');
 			$album->addTag($tag);

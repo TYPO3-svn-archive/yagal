@@ -21,8 +21,7 @@ if (TYPO3_MODE === 'BE')	{
 		'',						// Position
 		array(																			// An array holding the controller-action-combinations that are accessible
 			'GalleryAdmin' => 'index,show,new,create,delete,deleteAll,edit,update,populate',	// The first controller and its first action will be the default
-			'AlbumAdmin' => 'index,list,show,new,create,delete,edit,update',
-			'Comment' => 'create,delete,deleteAll',
+			'AlbumAdmin' => 'index,list,show,new,create,delete,deletefile,edit,update',
 			),
 		array(
 			'access' => 'user,group',
@@ -87,33 +86,6 @@ $TCA['tx_yagal_domain_model_album'] = array (
 		),
 		'dynamicConfigFile' => t3lib_extMgm::extPath($_EXTKEY) . 'Configuration/TCA/tca.php',
 		'iconfile'          => t3lib_extMgm::extRelPath($_EXTKEY) . 'Resources/Public/Icons/icon_tx_yagal_domain_model_album.gif'
-	)
-);
-
-t3lib_extMgm::allowTableOnStandardPages('tx_yagal_domain_model_comment');
-$TCA['tx_yagal_domain_model_comment'] = array (
-	'ctrl' => array (
-		'title'             => 'LLL:EXT:yagal/Resources/Private/Language/locallang_db.xml:tx_yagal_domain_model_comment',
-		'label'				=> 'date',
-		'label_alt'			=> 'author',
-		'label_alt_force'	=> TRUE,
-		'tstamp'            => 'tstamp',
-		'crdate'            => 'crdate',
-		'versioningWS' 		=> 2,
-		'versioning_followPages'	=> true,
-		'origUid' 			=> 't3_origuid',
-		'languageField' 	=> 'sys_language_uid',
-		'transOrigPointerField' 	=> 'l18n_parent',
-		'transOrigDiffSourceField' 	=> 'l18n_diffsource',
-		'prependAtCopy' 	=> 'LLL:EXT:lang/locallang_general.xml:LGL.prependAtCopy',
-		'copyAfterDuplFields' 		=> 'sys_language_uid',
-		'useColumnsForDefaultValues' => 'sys_language_uid',
-		'delete'            => 'deleted',
-		'enablecolumns'     => array (
-			'disabled' => 'hidden'
-		),
-		'dynamicConfigFile' => t3lib_extMgm::extPath($_EXTKEY) . 'Configuration/TCA/tca.php',
-		'iconfile'          => t3lib_extMgm::extRelPath($_EXTKEY) . 'Resources/Public/Icons/icon_tx_yagal_domain_model_comment.gif'
 	)
 );
 

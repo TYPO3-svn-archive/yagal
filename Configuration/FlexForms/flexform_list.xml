@@ -83,14 +83,6 @@
 							</config>
 						</TCEforms>
 					</settings.tags>
-					<settings.disableComment>
-						<TCEforms>
-							<label>Disable Comments</label>
-							<config>
-								<type>check</type>
-							</config>
-						</TCEforms>
-					</settings.disableComment>
 					<settings.disableHighlight>
 						<TCEforms>
 							<label>Disable Highlight</label>

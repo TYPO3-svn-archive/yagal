@@ -70,16 +70,14 @@ class Tx_Yagal_Controller_AlbumAdminController extends Tx_Extbase_MVC_Controller
 	 * Action that displays one single album
 	 *
 	 * @param Tx_Yagal_Domain_Model_Album $album The album to display
-	 * @param Tx_Yagal_Domain_Model_Comment $newComment A new comment
-	 * @dontvalidate $newComment
 	 * @return string The rendered view
 	 */
-	public function showAction(Tx_Yagal_Domain_Model_Album $album, Tx_Yagal_Domain_Model_Comment $newComment = NULL) {
+	public function showAction(Tx_Yagal_Domain_Model_Album $album) {
 
 		// force resizing
 		if ($album->getResize()) {
 			$this->forceResize = true;
-			$album->setResize(0);
+			$album->setResize(false);
 			$this->albumRepository->update($album);
 		}
                 
@@ -87,43 +85,59 @@ class Tx_Yagal_Controller_AlbumAdminController extends Tx_Extbase_MVC_Controller
 
 		$this->view->assign('settings', $this->settings);
 		$this->view->assign('album', $album);
-		$this->view->assign('newComment', $newComment);
 		$this->view->assign('fotos', $fotos);
 	}
 
 	private function resize($file, $dir, $w, $h) {
-		$resize = false;
+		return;
+                $resize = false;
 
 		// check if file exist
-		$files = t3lib_div::getFilesInDir($dir .'sized/'.$w.'.'.$h.'/');
+		$files = t3lib_div::getFilesInDir(PATH_site.$dir.'sized/'.$w.'.'.$h.'/');
+                var_export($file    );
 		if (!t3lib_div::inArray($files, $file)) {
 			// file not exists need to be resized
 			$resize = true;
+                        echo 'resize!!!';
 		}
+
+                echo $resize;
 
 		// need to resize?
 		if ($this->forceResize || $resize) {
 			$img = array();
-			$img['file'] = $dir.  $file;
+			$img['file'] = PATH_site .$dir.  $file;
 			$img['file.']['maxW'] = $w;
 			$img['file.']['maxH'] = $h;
-
-			$sizedFile = $this->cObj->IMG_RESOURCE($img);
+                       // echo 'resizing'.var_export($img, true);
+                	$sizedFile = $this->cObj->IMG_RESOURCE($img);
 
 			// make sized/ dir
-			t3lib_div::mkdir_deep(PATH_site. $dir, 'sized');
+			t3lib_div::mkdir_deep( $dir, 'sized');
 			// make w.h/ dir
-			t3lib_div::mkdir_deep(PATH_site. $dir.'sized/', $img['file.']['maxW'].'.'.$img['file.']['maxH'] );
+			t3lib_div::mkdir_deep($dir.'sized/', $img['file.']['maxW'].'.'.$img['file.']['maxH'] );
 
-			// move the file
-			t3lib_div::upload_copy_move(PATH_site. $sizedFile, PATH_site. $dir .'sized/'.$w.'.'.$h.'/'. $file);
+//                        $thumb = new Imagick(PATH_site .$dir.  $file);
+//
+//                        $thumb->resizeImage(320,240,Imagick::FILTER_LANCZOS,1);
+//                        $thumb->writeImage(PATH_site . $dir .'sized/'.$w.'.'.$h.'/'. $file);
+//
+//                        $thumb->destroy();
+                        $graf = t3lib_div::makeInstance('t3lib_stdGraphic');
+			$graf->init();
+                        $sized = $graf->imageMagickConvert  	(   	 PATH_site .$dir.  $file, '', $w, $h, '', '', '', 1);
+                        echo 'resized'.var_export($sized, true);
+//
+//
+//			// move the file
+//			t3lib_div::upload_copy_move(PATH_site. $sized['file'], $dir .'sized/'.$w.'.'.$h.'/'. $file);
 		}
 
 	}
 
 	private function getDir($dir) {
 		$res = array();
-		$list = t3lib_div::getFilesInDir($dir , '', 0, '1');
+		$list = t3lib_div::getFilesInDir(PATH_site.$dir , '', 0, '1');
 
 
 
@@ -160,7 +174,7 @@ class Tx_Yagal_Controller_AlbumAdminController extends Tx_Extbase_MVC_Controller
 	private function getSize($size) {
 		$w = 0;
 		$h = 0;
-                echo $size;
+                //echo $size;
 		if ($size) {
 			$sizes = explode("*", $size);
 			$w = intval($sizes[0]);
@@ -238,6 +252,18 @@ class Tx_Yagal_Controller_AlbumAdminController extends Tx_Extbase_MVC_Controller
 		$this->albumRepository->remove($album);
 		$this->flashMessages->add('Your album was removed.');
 		$this->redirect('index', NULL, NULL, array('gallery' => $gallery));
+	}
+
+	/**
+	 * Deletes an file
+	 *
+	 * @param Tx_Yagal_Domain_Model_Album $album The album with the to be deleted
+	 * @param $file The filename
+	 * @return void
+	 */
+	public function deletefileAction(Tx_Yagal_Domain_Model_Album $album, $file = null) {
+		$this->flashMessages->add('file:'.$file.' was removed.');
+		$this->redirect('show', NULL, NULL, array('album' => $album));
 	}
 
 }

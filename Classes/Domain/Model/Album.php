@@ -82,12 +82,6 @@ class Tx_Yagal_Domain_Model_Album extends Tx_Extbase_DomainObject_AbstractEntity
 	 */
 	protected $tags;
 
-	/**
-	 * @var Tx_Extbase_Persistence_ObjectStorage<Tx_Yagal_Domain_Model_Comment>
-	 * @lazy
-	 * @cascade remove
-	 */
-	protected $comments;
 
 	/**
 	 * @var Tx_Extbase_Persistence_ObjectStorage<Tx_Yagal_Domain_Model_Album>
@@ -99,7 +93,6 @@ class Tx_Yagal_Domain_Model_Album extends Tx_Extbase_DomainObject_AbstractEntity
 	 */
 	public function __construct() {
 		$this->tags = new Tx_Extbase_Persistence_ObjectStorage();
-		$this->comments = new Tx_Extbase_Persistence_ObjectStorage();
 		$this->relatedAlbums = new Tx_Extbase_Persistence_ObjectStorage();
 		$this->date = new DateTime();
 	}
@@ -309,53 +302,7 @@ class Tx_Yagal_Domain_Model_Album extends Tx_Extbase_DomainObject_AbstractEntity
 		$this->resize = $resize;
 	}
 	
-	/**
-	 * Setter for the comments to this album
-	 *
-	 * @param Tx_Extbase_Persistence_ObjectStorage $comments An Object Storage of related Comment instances
-	 * @return void
-	 */
-	public function setComments(Tx_Extbase_Persistence_ObjectStorage $comments) {
-		$this->comments = $comments;
-	}
 
-	/**
-	 * Adds a comment to this album
-	 *
-	 * @param Tx_Yagal_Domain_Model_Comment $comment
-	 * @return void
-	 */
-	public function addComment(Tx_Yagal_Domain_Model_Comment $comment) {
-		$this->comments->attach($comment);
-	}
-
-	/**
-	 * Removes Comment from this album
-	 *
-	 * @param Tx_Yagal_Domain_Model_Comment $commentToDelete
-	 * @return void
-	 */
-	public function removeComment(Tx_Yagal_Domain_Model_Comment $commentToDelete) {
-		$this->comments->detach($commentToDelete);
-	}
-
-	/**
-	 * Remove all comments from this album
-	 *
-	 * @return void
-	 */
-	public function removeAllComments() {
-		$this->comments = new Tx_Extbase_Persistence_ObjectStorage();
-	}
-
-	/**
-	 * Returns the comments to this album
-	 *
-	 * @return An Tx_Extbase_Persistence_ObjectStorage holding instances of Tx_Yagal_Domain_Model_Comment
-	 */
-	public function getComments() {
-		return clone $this->comments;
-	}
 
 	/**
 	 * Setter for the related albums
@@ -370,7 +317,7 @@ class Tx_Yagal_Domain_Model_Album extends Tx_Extbase_DomainObject_AbstractEntity
 	/**
 	 * Adds a related album
 	 *
-	 * @param Tx_Yagal_Domain_Model_Album $comment
+	 * @param Tx_Yagal_Domain_Model_Album $album
 	 * @return void
 	 */
 	public function addRelatedAlbum(Tx_Yagal_Domain_Model_Album $album) {

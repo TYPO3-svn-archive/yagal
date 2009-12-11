@@ -70,11 +70,9 @@ class Tx_Yagal_Controller_AlbumController extends Tx_Extbase_MVC_Controller_Acti
 	 * Action that displays one single album
 	 *
 	 * @param Tx_Yagal_Domain_Model_Album $album The album to display
-	 * @param Tx_Yagal_Domain_Model_Comment $newComment A new comment
-	 * @dontvalidate $newComment
 	 * @return string The rendered view
 	 */
-	public function showAction(Tx_Yagal_Domain_Model_Album $album, Tx_Yagal_Domain_Model_Comment $newComment = NULL) {
+	public function showAction(Tx_Yagal_Domain_Model_Album $album) {
 
 		// force resizing
 		if ($album->getResize()) {
@@ -87,7 +85,6 @@ class Tx_Yagal_Controller_AlbumController extends Tx_Extbase_MVC_Controller_Acti
 
 		$this->view->assign('settings', $this->settings);
 		$this->view->assign('album', $album);
-		$this->view->assign('newComment', $newComment);
 		$this->view->assign('fotos', $fotos);
 	}
 

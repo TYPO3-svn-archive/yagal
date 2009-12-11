@@ -20,31 +20,4 @@
 		<label for="title">Filepath</label><br />
 		<f:form.textbox property="filepath" /><br />
 	</f:form>
-	<div class="tx-galleryexample-comment-list">
-		<h3>Comments</h3>
-		<f:if condition="{album.comments}">
-			<f:then>
-				<f:for each="{album.comments}" as="comment">
-					<div class="tx-galleryexample-comment">
-						<div class="tx-galleryexample-comment-info">
-							<span class="tx-galleryexample-comment-author">
-								<a href="mailto:{comment.email}">{comment.author}</a> albumed on
-								<span class="tx-galleryexample-date"><f:format.date>{comment.date}</f:format.date></span>
-							</span>
-						</div>
-						<div class="tx-galleryexample-comment-text">
-							<f:format.nl2br>{comment.content}</f:format.nl2br>
-							<f:be.buttons.icon uri="{f:uri.action(action:'delete', controller: 'Comment', arguments:{album: album, comment: comment})}" icon="deletedok" title="Delete Comment" />
-						</div>
-						<hr class="clear" />
-					</div>
-				</f:for>
-				<p>&nbsp;</p>
-				<p><f:link.action action="deleteAll" controller="Comment" arguments="{album: album}"><strong>Delete all Comments of this album</strong></f:link.action></p>
-			</f:then>
-			<f:else>
-				<p><em>There are no comments for this album.</em></p>
-			</f:else>
-		</f:if>
-	</div>
 </f:section>

@@ -74,7 +74,7 @@ class Tx_Yagal_ViewHelpers_ExifViewHelper extends Tx_Fluid_Core_ViewHelper_Abstr
             //$info = exif_read_data($file, 'EXIF', 1, 0); // get exif of image
 
             // make EXIF array
-            if ($info['FileName']) $array['FileName'] = ($info['FileName'] ? $info['FileName'] : $info['WINXP']['FileName']); // comments
+            if ($info['FileName']) $array['FileName'] = ($info['FileName'] ? $info['FileName'] : $info['WINXP']['FileName']); 
             if ($info['Make']) $array['Make'] = $info['Make']; // camera brand
             if ($info['Model']) $array['Model'] = $info['Model']; // camera model
             if ($info['ExposureTime'] || $info['ExposureTime']) $array['ExposureTime'] = ($info['ExposureTime'] ? $info['ExposureTime'] : $info['WINXP']['Title']); // title
