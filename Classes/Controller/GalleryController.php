@@ -62,8 +62,6 @@ class Tx_Yagal_Controller_GalleryController extends Tx_Extbase_MVC_Controller_Ac
 	 * @return string The rendered view
 	 */
 	public function indexAction() {
-
-                
 		if ($this->settings['view']) {
 			if ($this->settings['view'] == "list") {
 				$this->redirect('list', 'Album');

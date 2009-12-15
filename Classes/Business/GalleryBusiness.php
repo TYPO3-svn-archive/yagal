@@ -12,6 +12,13 @@
 class Tx_Yagal_Business_GalleryBusiness {
 //put your code here
 
+	public function test() {
+		$stdGrafix = t3lib_div::makeInstance('t3lib_stdGraphic');
+		
+		$out = $stdGrafix->imageMagickConvert('/home/mauri/public_html/t343/fileadmin/test.jpg', '', 100, 100);
+		
+		var_export($out);
+	}
    
     private function resize($file, $dir, $w, $h) {
         $resize = false;

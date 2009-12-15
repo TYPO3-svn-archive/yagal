@@ -30,6 +30,12 @@
  */
 class Tx_Yagal_Controller_GalleryAdminController extends Tx_Extbase_MVC_Controller_ActionController {
 
+	
+	/**
+	 * @var Tx_Yagal_Business_GalleryBusiness
+	 */
+	protected $galleryBusiness;
+	
 	/**
 	 * @var Tx_Yagal_Domain_Model_GalleryRepository
 	 */
@@ -48,6 +54,8 @@ class Tx_Yagal_Controller_GalleryAdminController extends Tx_Extbase_MVC_Controll
 	public function initializeAction() {
 		$this->galleryRepository = t3lib_div::makeInstance('Tx_Yagal_Domain_Repository_GalleryRepository');
 		$this->administratorRepository = t3lib_div::makeInstance('Tx_Yagal_Domain_Repository_AdministratorRepository');
+		$this->galleryBusiness = t3lib_div::makeInstance('Tx_Yagal_Business_GalleryBusiness');
+		
 	}
 
 	/**
