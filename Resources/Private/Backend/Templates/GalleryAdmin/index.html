@@ -2,33 +2,50 @@
 <f:layout name="default" />
 
 <f:section name="iconButtons">
-	<f:be.buttons.icon uri="{f:uri.action(action:'new')}" icon="new_el" title="Create new Gallery" />
+    <f:be.buttons.icon uri="{f:uri.action(action:'new')}" icon="new_el" title="Create new Gallery" />
 </f:section>
 
 <f:section name="content">
-	<f:if condition="{galleries}">
-		<f:then>
-		
-			<p class="bodytext">Here is a list of galleries:</p>
-			<ul>
-				<f:for each="{galleries}" as="gallery">
-					<li>
-						<h3>
-							<f:link.action action="index" controller="AlbumAdmin" arguments="{gallery: gallery}" title="Edit this Gallery">
-								{gallery.title} (<f:count subject="{gallery.albums}" />)
-							</f:link.action>
-							
-							<f:be.buttons.icon uri="{f:uri.action(action:'edit', arguments:{gallery: gallery})}" icon="edit2" title="Edit this gallery" />
-						</h3>
-						<img src="../{gallery.highlight}" />
-						<p><f:format.html>{gallery.description}</f:format.html></p>
-					</li>
-				</f:for>
-			</ul>
-			<p><f:link.action action="deleteAll">Delete all galleries [!!!]</f:link.action></p>
-		</f:then>
-		<f:else>
-			<p><f:link.action action="populate">Create example dataaaa</f:link.action></p>
-		</f:else>
-	</f:if>
+    <f:if condition="{galleries}">
+        <f:then>
+
+            <p class="bodytext">Here is a list of galleries:</p>
+            <table>
+                <tr>
+                    <th>Gallery</th>
+                    <th># Albums</th>
+                    <th>Description</th>
+                    <th>Delete</th>
+                    <th>Edit</th>
+                    <th>Detail</th>
+                    <th>Show</th>
+                </tr>
+                <f:for each="{galleries}" as="gallery">
+                    <tr>
+                        <td>
+                            <f:link.action action="index" controller="AlbumAdmin" arguments="{gallery: gallery}" title="Edit this Gallery">
+				{gallery.title}
+                            </f:link.action>
+                        </td>
+                        <td><f:count subject="{gallery.albums}" /></td>
+                        <td><f:format.html>{gallery.description}</f:format.html></td>
+                        <td></td>
+                        <td><f:be.buttons.icon uri="{f:uri.action(action:'edit', arguments:{gallery: gallery})}" icon="edit2" title="Edit this gallery" /></td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                    <f:for each="{gallery.albums}" as="album">
+                        <tr>
+                        <td>&nbsp;</td>
+                        <td><f:link.action action="show" controller="AlbumAdmin" arguments="{album: album}" title="Show Album">
+					{album.title}
+                                        </f:link.action></td>
+                        <td><f:format.html>{gallery.description}</f:format.html></td>
+                        <td></td>
+
+                    </tr>
+            </table>
+
+        </f:then>
+    </f:if>
 </f:section>

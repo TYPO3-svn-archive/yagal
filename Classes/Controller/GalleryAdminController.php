@@ -134,57 +134,7 @@ class Tx_Yagal_Controller_GalleryAdminController extends Tx_Extbase_MVC_Controll
 		$this->redirect('index');
 	}
 
-	/**
-	 * Creates a several new $galleries
-	 *
-	 * @return void
-	 */
-	public function populateAction() {
-		$photographer = t3lib_div::makeInstance('Tx_Yagal_Domain_Model_Person', 'Stephen', 'Smith', 'foo.bar@example.com');
-		for ($galleryNumber = 1; $galleryNumber < 4; $galleryNumber++) {
-			$gallery = $this->getGallery($galleryNumber, $photographer);
-			$this->galleryRepository->add($gallery);
-		}
-		$this->redirect('index');
-	}
-
-	/**
-	 * Returns a sample gallery populated with generic data. It is also an example how to handle objects and repositories in general.
-	 *
-	 * @param int $galleryNumber The number of the gallery
-	 * @param Tx_Yagal_Domain_Model_Person $photographer The photographer of albums
-	 * @return Tx_Yagal_Domain_Model_Gallery The gallery object
-	 */
-	private function getGallery($galleryNumber, $photographer) {
-		$gallery = new Tx_Yagal_Domain_Model_Gallery;
-		$gallery->setTitle('Gallery #' . $galleryNumber);
-		$gallery->setDescription('A gallery about TYPO3 extension development.');
-
-		$administrator = new Tx_Yagal_Domain_Model_Administrator();
-		$administrator->setName('John Doe');
-		$administrator->setEmail('john.doe@example.com');
-		$gallery->setAdministrator($administrator);
-
-		for ($albumNumber = 1; $albumNumber < 6; $albumNumber++) {
-			$album = new Tx_Yagal_Domain_Model_Album;
-			$album->setTitle('The Album #' . $albumNumber);
-			$album->setPhotographer($photographer);
-			$album->setContent('Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.');
-			$gallery->addAlbum($album);
-
-
-			$tag = new Tx_Yagal_Domain_Model_Tag('MVC');
-			$album->addTag($tag);
-
-			$tag = new Tx_Yagal_Domain_Model_Tag('Domain Driven Design');
-			$album->addTag($tag);
-
-			$album->setGallery($gallery);
-		}
-
-		return $gallery;
-	}
-
+	
 	public function addGallery ($config) {
 		$optionList = array();
 		// add first option

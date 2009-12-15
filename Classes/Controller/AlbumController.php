@@ -31,141 +31,61 @@
  */
 class Tx_Yagal_Controller_AlbumController extends Tx_Extbase_MVC_Controller_ActionController {
 
-	/**
-	 * @var Tx_Yagal_Domain_Model_AlbumRepository
-	 */
-	protected $albumRepository;
-	private $forceResize = false;
-
-	/**
-	 * Initializes the current action
-	 *
-	 * @return void
-	 */
-	public function initializeAction() {
-		$this->albumRepository = t3lib_div::makeInstance('Tx_Yagal_Domain_Repository_AlbumRepository');
-		$this->personRepository = t3lib_div::makeInstance('Tx_Yagal_Domain_Repository_PersonRepository');
-		$this->cObj=t3lib_div::makeInstance('tslib_cObj');
-
-	}
-
-	/**
-	 * List action for this controller. Displays latest albums
-	 *
-	 * @param Tx_Yagal_Domain_Model_Gallery $gallery The gallery to show the albums of
-	 * @return string
-	 */
-	public function indexAction(Tx_Yagal_Domain_Model_Gallery $gallery) {
-		$this->view->assign('gallery', $gallery);
-		$this->view->assign('recentAlbums', $this->albumRepository->findRecentByGallery($gallery, $this->settings['maxAlbums']));
-	}
-
-	public function listAction() {
-		$albums = array();
-
-		$this->view->assign('albums', $this->albumRepository->findAlbums($this->settings['gallery'], $this->settings['tags']) );
-	}
-
-	/**
-	 * Action that displays one single album
-	 *
-	 * @param Tx_Yagal_Domain_Model_Album $album The album to display
-	 * @return string The rendered view
-	 */
-	public function showAction(Tx_Yagal_Domain_Model_Album $album) {
-
-		// force resizing
-		if ($album->getResize()) {
-			$this->forceResize = true;
-			$album->setResize(0);
-			$this->albumRepository->update($album);
-		}
-                
-		$fotos = $this->getDir($album->getFilepath());
-
-		$this->view->assign('settings', $this->settings);
-		$this->view->assign('album', $album);
-		$this->view->assign('fotos', $fotos);
-	}
-
-	private function resize($file, $dir, $w, $h) {
-		$resize = false;
-
-		// check if file exist
-		$files = t3lib_div::getFilesInDir($dir .'sized/'.$w.'.'.$h.'/');
-		if (!t3lib_div::inArray($files, $file)) {
-			// file not exists need to be resized
-			$resize = true;
-		}
-
-		// need to resize?
-		if ($this->forceResize || $resize) {
-			$img = array();
-			$img['file'] = $dir.  $file;
-			$img['file.']['maxW'] = $w;
-			$img['file.']['maxH'] = $h;
-
-			$sizedFile = $this->cObj->IMG_RESOURCE($img);
-
-			// make sized/ dir
-			t3lib_div::mkdir_deep(PATH_site. $dir, 'sized');
-			// make w.h/ dir
-			t3lib_div::mkdir_deep(PATH_site. $dir.'sized/', $img['file.']['maxW'].'.'.$img['file.']['maxH'] );
-
-			// move the file
-			t3lib_div::upload_copy_move(PATH_site. $sizedFile, PATH_site. $dir .'sized/'.$w.'.'.$h.'/'. $file);
-		}
-
-	}
-
-	private function getDir($dir) {
-		$res = array();
-		$list = t3lib_div::getFilesInDir($dir , '', 0, '1');
+/**
+ * @var Tx_Yagal_Business_GalleryBusiness
+ */
+    protected $galleryBusiness;
 
 
+    /**
+     * @var Tx_Yagal_Domain_Model_AlbumRepository
+     */
+    protected $albumRepository;
+    private $forceResize = false;
 
-		//var_export( $list);
-		if ($list) {
-			foreach ($list as $item) {
+    /**
+     * Initializes the current action
+     *
+     * @return void
+     */
+    public function initializeAction() {
+        $this->albumRepository = t3lib_div::makeInstance('Tx_Yagal_Domain_Repository_AlbumRepository');
+        $this->personRepository = t3lib_div::makeInstance('Tx_Yagal_Domain_Repository_PersonRepository');
+        $this->galleryBusiness = t3lib_div::makeInstance('Tx_Yagal_Business_GalleryBusiness');
+    }
 
-				$originalUrl = $dir.$item;
-				$size = $this->getSize($this->settings['maxSize']);
-				$this->resize($item, $dir, $size['w'], $size['h']);
-				$maximalUrl = $dir.'sized/'.$size['w'].'.'.$size['h'].'/'.$item;
+    /**
+     * List action for this controller. Displays latest albums
+     *
+     * @param Tx_Yagal_Domain_Model_Gallery $gallery The gallery to show the albums of
+     * @return string
+     */
+    public function indexAction(Tx_Yagal_Domain_Model_Gallery $gallery) {
+        $this->view->assign('gallery', $gallery);
+        $this->view->assign('recentAlbums', $this->albumRepository->findRecentByGallery($gallery, $this->settings['maxAlbums']));
+    }
 
-				$size = $this->getSize($this->settings['normalSize']);
-				$this->resize($item, $dir, $size['w'], $size['h']);
-				$normalUrl = $dir.'sized/'.$size['w'].'.'.$size['h'].'/'.$item;
+    public function listAction() {
+        $albums = array();
 
-				$size = $this->getSize($this->settings['thumbSize']);
-				$this->resize($item, $dir, $size['w'], $size['h']);
-				$thumbUrl = $dir.'sized/'.$size['w'].'.'.$size['h'].'/'.$item;
+        $this->view->assign('albums', $this->albumRepository->findAlbums($this->settings['gallery'], $this->settings['tags']) );
+    }
 
-				$foto = array('originalUrl' => $originalUrl,
-					 'maximalUrl' => $maximalUrl,
-					'normalUrl' => $normalUrl,
-				'thumbUrl' => $thumbUrl);
+    /**
+     * Action that displays one single album
+     *
+     * @param Tx_Yagal_Domain_Model_Album $album The album to display
+     * @return string The rendered view
+     */
+    public function showAction(Tx_Yagal_Domain_Model_Album $album) {
 
-				array_push($res, $foto);
-			}
-		}
 
-		return $res;
+        $fotos = $this->galleryBusiness->getDir($album, $this->settings);
 
-	}
-
-	private function getSize($size) {
-		$w = 0;
-		$h = 0;
-                echo $size;
-		if ($size) {
-			$sizes = explode("*", $size);
-			$w = intval($sizes[0]);
-			$h = intval($sizes[1]);
-		}
-
-		return array('w' => $w, 'h' => $h);
-	}
+        $this->view->assign('settings', $this->settings);
+        $this->view->assign('album', $album);
+        $this->view->assign('fotos', $fotos);
+    }
 
 
 
