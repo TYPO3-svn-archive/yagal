@@ -32,6 +32,7 @@ class Tx_Yagal_Business_GalleryBusiness {
 
         // need to resize?
         if ($this->forceResize || $resize) {
+            t3lib_div::devLog('resizing');
             $img = array();
             $img['file'] = $dir.  $file;
             $img['file.']['maxW'] = $w;
