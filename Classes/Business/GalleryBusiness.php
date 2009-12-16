@@ -7,7 +7,6 @@
 /**
  * 
  * Description of GalleryBusiness
- * svn test boss
  *
  * @author mauri
  */
