@@ -28,13 +28,13 @@
  * @version $Id:$
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License, version 2
  */
-class Tx_Yagal_Controller_GalleryController extends Tx_Extbase_MVC_Controller_ActionController {
+class Tx_Yagal_Controller_GalleryController extends Tx_Yagal_Controller_GalleryAbstractController {
 
-	/**
-	 * @var Tx_Yagal_Business_GalleryBusiness
-	 */
-	protected $galleryBusiness;
-
+    /**
+     * @var Tx_Yagal_Domain_Model_AlbumRepository
+     */
+    protected $albumRepository;
+	
 	/**
 	 * @var Tx_Yagal_Domain_Model_GalleryRepository
 	 */
@@ -51,9 +51,10 @@ class Tx_Yagal_Controller_GalleryController extends Tx_Extbase_MVC_Controller_Ac
 	 * @return void
 	 */
 	public function initializeAction() {
+		$this->init();
 		$this->galleryRepository = t3lib_div::makeInstance('Tx_Yagal_Domain_Repository_GalleryRepository');
+        $this->albumRepository = t3lib_div::makeInstance('Tx_Yagal_Domain_Repository_AlbumRepository');
 		$this->administratorRepository = t3lib_div::makeInstance('Tx_Yagal_Domain_Repository_AdministratorRepository');
-		$this->galleryBusiness = t3lib_div::makeInstance('Tx_Yagal_Business_GalleryBusiness');
 	}
 
 	/**
@@ -65,38 +66,32 @@ class Tx_Yagal_Controller_GalleryController extends Tx_Extbase_MVC_Controller_Ac
 		if ($this->settings['view']) {
 			if ($this->settings['view'] == "list") {
 				$this->redirect('list', 'Album');
-			} else if ($this->settings['view'] == "randomShow") { 
+			} else if ($this->settings['view'] == "randomShow") {
 				$this->redirect('randomShow', 'Album');
-			} else if ($this->settings['view'] == "randomList") { 
+			} else if ($this->settings['view'] == "randomList") {
 				$this->redirect('randomList', 'Album');
-			} else if ($this->settings['view'] == "show") { 
+			} else if ($this->settings['view'] == "show") {
 				$this->redirect('show', 'Album');
+			} else if ($this->settings['view'] == "browser") {
+				$this->redirect('browser');
 			}
-		}
-		
-		if ($this->settings['gallery']) {
-			$galleries = array( $this->galleryRepository->findByUid( intval($this->settings['gallery']) ));
 		} else {
-			$galleries = $this->galleryRepository->findAll();
-		}
-		
-		$this->view->assign('galleries', $galleries );
-	}
-	
-	
-	
 
-	/**
-	 * Override getErrorFlashMessage to present
-	 * nice flash error messages.
-	 *
-	 * @return string
-	 */
-	protected function getErrorFlashMessage() {
-		switch ($this->actionMethodName) {
-			default :
-				return parent::getErrorFlashMessage();
+			if ($this->settings['gallery']) {
+				$galleries = array( $this->galleryRepository->findByUid( intval($this->settings['gallery']) ));
+			} else {
+				$galleries = $this->galleryRepository->findAll();
+			}
+
+			$this->view->assign('galleries', $galleries );
 		}
+	}
+
+
+	public function browserAction () {
+		echo 'sadfa';
+		$album = $this->albumRepository->findAll();
+		$this->view->assign('albums', $album );
 	}
 
 }

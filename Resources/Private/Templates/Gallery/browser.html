@@ -1,0 +1,15 @@
+<f:layout name="default" />
+
+<f:section name="content">
+		<f:if condition="{albums}">
+			<f:then>
+				<ul>
+					<f:for each="{albums}" as="album">
+						<li>
+							<f:link.action action="show" controller="Album" arguments="{album: album}">{album.title}</f:link.action>
+						</li>
+					</f:for>
+				</ul>
+			</f:then>
+		</f:if>
+</f:section>

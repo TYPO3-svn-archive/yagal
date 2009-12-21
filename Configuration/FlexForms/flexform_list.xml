@@ -45,7 +45,8 @@
 										<numIndex index="1">show</numIndex>
 									</numIndex>
 									<numIndex index="5" type="array">
-										<numIndex index="0">view5</numIndex>
+										<numIndex index="0">Browser</numIndex>
+										<numIndex index="1">browser</numIndex>
 									</numIndex>
 								</items>
 
@@ -112,9 +113,9 @@
 							</config>
 						</TCEforms>
 					</settings.showPage>
-					<settings.maxSize>
+					<settings.maxSizeW>
 						<TCEforms>
-							<label>Maximum Size</label>
+							<label>Maximum Size width</label>
 							<config>
 								<type>input</type>
 								<size>20</size>
@@ -122,10 +123,10 @@
 								<default></default>
 							</config>
 						</TCEforms>
-					</settings.maxSize>
-					<settings.normalSize>
+					</settings.maxSizeW>
+					<settings.maxSizeH>
 						<TCEforms>
-							<label>Normal Size</label>
+							<label>Maximum Size height</label>
 							<config>
 								<type>input</type>
 								<size>20</size>
@@ -133,10 +134,10 @@
 								<default></default>
 							</config>
 						</TCEforms>
-					</settings.normalSize>
-					<settings.thumbSize>
+					</settings.maxSizeH>
+					<settings.normalSizeW>
 						<TCEforms>
-							<label>Thumbnail Size</label>
+							<label>Normal Size widht</label>
 							<config>
 								<type>input</type>
 								<size>20</size>
@@ -144,7 +145,62 @@
 								<default></default>
 							</config>
 						</TCEforms>
-					</settings.thumbSize>
+					</settings.normalSizeW>
+					<settings.normalSizeH>
+						<TCEforms>
+							<label>Normal Size height</label>
+							<config>
+								<type>input</type>
+								<size>20</size>
+								<eval>string</eval>
+								<default></default>
+							</config>
+						</TCEforms>
+					</settings.normalSizeH>
+					<settings.thumbSizeW>
+						<TCEforms>
+							<label>Thumbnail Size widht</label>
+							<config>
+								<type>input</type>
+								<size>20</size>
+								<eval>string</eval>
+								<default></default>
+							</config>
+						</TCEforms>
+					</settings.thumbSizeW>
+					<settings.thumbSizeH>
+						<TCEforms>
+							<label>Thumbnail Size height</label>
+							<config>
+								<type>input</type>
+								<size>20</size>
+								<eval>string</eval>
+								<default></default>
+							</config>
+						</TCEforms>
+					</settings.thumbSizeH>
+					<settings.highlighbSizeW>
+						<TCEforms>
+							<label>Highlight Size widht</label>
+							<config>
+								<type>input</type>
+								<size>20</size>
+								<eval>string</eval>
+								<default></default>
+							</config>
+						</TCEforms>
+					</settings.highlighbSizeW>
+					<settings.highlighbSizeH>
+						<TCEforms>
+							<label>Highlight Size height</label>
+							<config>
+								<type>input</type>
+								<size>20</size>
+								<eval>string</eval>
+								<default></default>
+							</config>
+						</TCEforms>
+					</settings.highlighbSizeH>
 
 				</el>
 			</ROOT>

@@ -3,9 +3,14 @@ plugin.tx_yagal {
 	settings {
 		 # maximum number of albums to display at once
 		maxAlbums = 3
-		maxSize = 600*400
-		normalSize = 300*200
-		thumbSize = 100*100
+		maxSizeW = 600
+		maxSizeH = 400
+		normalSizeW = 300
+		normalSizeH = 200
+		thumbSizeW = 100
+		thumbSizeH = 100
+		highlighbSizeW = 200
+		highlighbSizeH = 200
 		
 	}
 	persistence {

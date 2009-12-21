@@ -29,12 +29,7 @@
  * @version $Id:$
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License, version 2
  */
-class Tx_Yagal_Controller_AlbumController extends Tx_Extbase_MVC_Controller_ActionController {
-
-/**
- * @var Tx_Yagal_Business_GalleryBusiness
- */
-    protected $galleryBusiness;
+class Tx_Yagal_Controller_AlbumController extends Tx_Yagal_Controller_GalleryAbstractController {
 
 
     /**
@@ -49,9 +44,9 @@ class Tx_Yagal_Controller_AlbumController extends Tx_Extbase_MVC_Controller_Acti
      * @return void
      */
     public function initializeAction() {
+    	$this->init();
         $this->albumRepository = t3lib_div::makeInstance('Tx_Yagal_Domain_Repository_AlbumRepository');
         $this->personRepository = t3lib_div::makeInstance('Tx_Yagal_Domain_Repository_PersonRepository');
-        $this->galleryBusiness = t3lib_div::makeInstance('Tx_Yagal_Business_GalleryBusiness');
     }
 
     /**
@@ -109,7 +104,7 @@ class Tx_Yagal_Controller_AlbumController extends Tx_Extbase_MVC_Controller_Acti
 
         $fotos = $this->galleryBusiness->getDir($album, $this->settings);
 
-        $this->view->assign('settings', $this->settings);
+
         $this->view->assign('album', $album);
         $this->view->assign('fotos', $fotos);
     }
