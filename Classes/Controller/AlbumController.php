@@ -70,7 +70,34 @@ class Tx_Yagal_Controller_AlbumController extends Tx_Extbase_MVC_Controller_Acti
 
         $this->view->assign('albums', $this->albumRepository->findAlbums($this->settings['gallery'], $this->settings['tags']) );
     }
-
+    
+    public function randomListAction() {
+        $albums = array();
+		$albums = $this->albumRepository->findAlbums($this->settings['gallery'], $this->settings['tags']);
+		$cont = count($albums);
+		
+		$a[1] =  $albums[rand (0, count($albums)-1)];
+		
+		$showPage = null;
+		
+		if ($this->settings['showPage']) $showPage = intval( $this->settings['showPage'], 10); 
+		
+        //var_export($showPage); 
+        $this->view->assign('albums', $a );
+        $this->view->assign('showPage', $showPage );
+    }
+    
+    public function randomShowAction() {
+    	//echo 'randomShow';
+        $albums = array();
+		$albums = $this->albumRepository->findAlbums($this->settings['gallery'], $this->settings['tags']);
+		$cont = count($albums);
+		
+		$album =  $albums[rand (0, count($albums)-1)];
+        $this->showAction( $album );
+    }
+    
+    
     /**
      * Action that displays one single album
      *

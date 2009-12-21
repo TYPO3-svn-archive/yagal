@@ -65,6 +65,12 @@ class Tx_Yagal_Controller_GalleryController extends Tx_Extbase_MVC_Controller_Ac
 		if ($this->settings['view']) {
 			if ($this->settings['view'] == "list") {
 				$this->redirect('list', 'Album');
+			} else if ($this->settings['view'] == "randomShow") { 
+				$this->redirect('randomShow', 'Album');
+			} else if ($this->settings['view'] == "randomList") { 
+				$this->redirect('randomList', 'Album');
+			} else if ($this->settings['view'] == "show") { 
+				$this->redirect('show', 'Album');
 			}
 		}
 		

@@ -11,7 +11,7 @@ Tx_Extbase_Utility_Extension::configurePlugin(
 	'Pi1',																			// A unique name of the plugin in UpperCamelCase
 	array(																			// An array holding the controller-action-combinations that are accessible 
 		'Gallery' => 'index,show',	// The first controller and its first action will be the default 
-		'Album' => 'index,list,show',
+		'Album' => 'index,list,show,randomShow,randomList',
 		)
 );
 

@@ -11,7 +11,7 @@
 				<dl>
 					<f:for each="{albums}" as="album">
 						<dt>
-							<f:link.action action="show" controller="Album" arguments="{album: album, gallery: gallery}">{album.title}</f:link.action>
+							<f:link.action action="show" controller="Album" arguments="{album: album, gallery: gallery}"  pageUid="{showPage}">{album.title}</f:link.action>
 						</dt>
 						<dd>{album.filepath}</dd>
 						<dd><img src="{album.highlight}"></img></dd>
@@ -19,7 +19,7 @@
 						<dd><f:render partial="albumMetaData" arguments="{album: album}"/></dd>
 						<dd><f:render partial="albumTags" arguments="{album: album}"/></dd>
 						<dd>
-							&nbsp;&nbsp;<f:link.action controller="Album" action="show" arguments="{album : album}"><f:translate key="read_more">read more &gt;&gt;</f:translate></f:link.action><br />
+							&nbsp;&nbsp;<f:link.action controller="Album" action="show" arguments="{album : album}" pageUid="{showPage}"><f:translate key="read_more">read more &gt;&gt;</f:translate></f:link.action><br />
 						</dd>
 					</f:for>
 				</dl>

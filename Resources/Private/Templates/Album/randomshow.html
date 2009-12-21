@@ -1,0 +1,32 @@
+{namespace gallery=Tx_Yagal_ViewHelpers}
+<f:layout name="default" />
+
+<f:section name="content">
+    <f:link.action action="index" controller="Album" arguments="{gallery: album.gallery}">Back to {album.gallery.title}</f:link.action>
+    <div class="tx-galleryexample-single-item">
+        <span class="tx-galleryexample-single-date"><f:format.date>{album.date}</f:format.date></span>
+        <h3>
+			{album.title}
+        </h3>
+        <p>{album.filepath}</p>
+         <f:render partial="shoothGallery" arguments="{fotos: fotos, album: album}"/>
+        <p class="bodytext"><f:format.html>{album.content}</f:format.html></p>
+        <p class="bodytext">By: {album.photographer.fullName}</p>
+        <f:render partial="albumTags" arguments="{album: album}"/>
+        <f:if condition="{album.relatedAlbums}">
+            <div>Related albums:</div>
+            <ul class="tx-galleryexample-related">
+                <f:for each="{album.relatedAlbums}" as="relatedAlbum">
+                    <li>
+                    <f:link.action action="show" controller="Album" arguments="{album: relatedAlbum, gallery: album.gallery}">{relatedAlbum.title}</f:link.action>
+                    </li>
+                </f:for>
+            </ul>
+        </f:if>
+        <div class="tx-galleryexample-single-backlink">
+            <f:link.action action="index" controller="Album" arguments="{gallery: album.gallery}">Back</f:link.action>
+        </div>
+    </div>
+   
+   
+</f:section>
