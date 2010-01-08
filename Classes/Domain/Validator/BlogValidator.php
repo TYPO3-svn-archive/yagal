@@ -40,7 +40,7 @@ class Tx_Yagal_Domain_Validator_GalleryValidator extends Tx_Extbase_Validation_V
 	 * @param Tx_Yagal_Domain_Model_Gallery $gallery The gallery
 	 * @return boolean true
 	 */
-public function isValid($gallery) {
+     public function isValid($gallery) {
 		if ($gallery->getTitle() === 'Extbase') {
 			$this->addError(Tx_Extbase_Utility_Localization::translate('error.gallery_name_extbase', 'GalleryExample'), 2);
 			return FALSE;
