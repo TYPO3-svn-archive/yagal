@@ -1,209 +1,246 @@
 <T3DataStructure>
-	<sheets>
-		<sDEF>
-			<ROOT>
-				<TCEforms>
-					<sheetTitle>Options</sheetTitle>
-				</TCEforms>
-				<type>array</type>
-				<el>
-					<settings.maxAlbums>
-						<TCEforms>
-							<label>Max. number of albums to display at once</label>
-							<config>
-								<type>input</type>
-								<size>2</size>
-								<eval>int</eval>
-								<default>10</default>
-							</config>
-						</TCEforms>
-					</settings.maxAlbums>
-					<settings.view>
-						<TCEforms>
-							<label>View</label>
-							<config>
-								<type>select</type>
-								<items type="array">
-									<numIndex index="0" type="array">
-										<numIndex index="0"></numIndex>
-										<numIndex index="1"></numIndex>
-									</numIndex>
-									<numIndex index="1" type="array">
-										<numIndex index="0">RandomShow</numIndex>
-										<numIndex index="1">randomShow</numIndex>
-									</numIndex>
-									<numIndex index="2" type="array">
-										<numIndex index="0">List</numIndex>
-										<numIndex index="1">list</numIndex>
-									</numIndex>
-									<numIndex index="3" type="array">
-										<numIndex index="0">RandomList</numIndex>
-										<numIndex index="1">randomList</numIndex>
-									</numIndex>
-									<numIndex index="4" type="array">
-										<numIndex index="0">Show</numIndex>
-										<numIndex index="1">show</numIndex>
-									</numIndex>
-									<numIndex index="5" type="array">
-										<numIndex index="0">Browser</numIndex>
-										<numIndex index="1">browser</numIndex>
-									</numIndex>
-								</items>
+    <sheets>
+        <sDEF>
+            <ROOT>
+                <TCEforms>
+                    <sheetTitle>Options</sheetTitle>
+                </TCEforms>
+                <type>array</type>
+                <el>
 
-							</config>
-						</TCEforms>
-					</settings.view>
-					<settings.gallery>
-						<TCEforms>
-							<label>Gallery to Display</label>
-							<config>
-								<type>select</type>
-								<items type="array">
-									<numIndex index="0" type="array">
-										<numIndex index="0"></numIndex>
-										<numIndex index="1"></numIndex>
-									</numIndex>
+                    <switchableControllerActions>
+                        <TCEforms>
+                            <label>Overwrite default action (example)</label>
+                            <config>
+                                <type>select</type>
+                                <items type="array">
+                                    <numIndex index="0" type="array">
+                                        <numIndex index="0">Gallery</numIndex>
 
-								</items>
-								<foreign_table>tx_yagal_domain_model_gallery</foreign_table>
+                                        <numIndex index="1">Gallery->index;Gallery->flashMessages;Album->index;Album->show;Gallery->setup</numIndex>
 
-							</config>
-						</TCEforms>
-					</settings.gallery>
-					<settings.tags>
-						<TCEforms>
-							<label>Tags to Display</label>
-							<config>
-								<type>select</type>
-								<size>10</size>
-								<minitems>0</minitems>
-								<maxitems>9999</maxitems>
-								<autoSizeMax>30</autoSizeMax>
-								<multiple>0</multiple>
-								<foreign_table>tx_yagal_domain_model_tag</foreign_table>
-							</config>
-						</TCEforms>
-					</settings.tags>
-					<settings.disableHighlight>
-						<TCEforms>
-							<label>Disable Highlight</label>
-							<config>
-								<type>check</type>
-							</config>
-						</TCEforms>
-					</settings.disableHighlight>
-					<settings.forceResizing>
-						<TCEforms>
-							<label>Force Resizing</label>
-							<config>
-								<type>check</type>
-							</config>
-						</TCEforms>
-					</settings.forceResizing>
-					<settings.showPage>
-						<TCEforms>
-							<label>Page for Show</label>
-							<config>
-								<type>group</type>
-								<internal_type>db</internal_type>
-								<allowed>pages</allowed>
-								<size>1</size>
-								<maxitems>1</maxitems>
-								<minitems>0</minitems>
-							</config>
-						</TCEforms>
-					</settings.showPage>
-					<settings.maxSizeW>
-						<TCEforms>
-							<label>Maximum Size width</label>
-							<config>
-								<type>input</type>
-								<size>20</size>
-								<eval>string</eval>
-								<default></default>
-							</config>
-						</TCEforms>
-					</settings.maxSizeW>
-					<settings.maxSizeH>
-						<TCEforms>
-							<label>Maximum Size height</label>
-							<config>
-								<type>input</type>
-								<size>20</size>
-								<eval>string</eval>
-								<default></default>
-							</config>
-						</TCEforms>
-					</settings.maxSizeH>
-					<settings.normalSizeW>
-						<TCEforms>
-							<label>Normal Size widht</label>
-							<config>
-								<type>input</type>
-								<size>20</size>
-								<eval>string</eval>
-								<default></default>
-							</config>
-						</TCEforms>
-					</settings.normalSizeW>
-					<settings.normalSizeH>
-						<TCEforms>
-							<label>Normal Size height</label>
-							<config>
-								<type>input</type>
-								<size>20</size>
-								<eval>string</eval>
-								<default></default>
-							</config>
-						</TCEforms>
-					</settings.normalSizeH>
-					<settings.thumbSizeW>
-						<TCEforms>
-							<label>Thumbnail Size widht</label>
-							<config>
-								<type>input</type>
-								<size>20</size>
-								<eval>string</eval>
-								<default></default>
-							</config>
-						</TCEforms>
-					</settings.thumbSizeW>
-					<settings.thumbSizeH>
-						<TCEforms>
-							<label>Thumbnail Size height</label>
-							<config>
-								<type>input</type>
-								<size>20</size>
-								<eval>string</eval>
-								<default></default>
-							</config>
-						</TCEforms>
-					</settings.thumbSizeH>
-					<settings.highlighbSizeW>
-						<TCEforms>
-							<label>Highlight Size widht</label>
-							<config>
-								<type>input</type>
-								<size>20</size>
-								<eval>string</eval>
-								<default></default>
-							</config>
-						</TCEforms>
-					</settings.highlighbSizeW>
-					<settings.highlighbSizeH>
-						<TCEforms>
-							<label>Highlight Size height</label>
-							<config>
-								<type>input</type>
-								<size>20</size>
-								<eval>string</eval>
-								<default></default>
-							</config>
-						</TCEforms>
-					</settings.highlighbSizeH>
+                                    </numIndex>
+                                    <numIndex index="1" type="array">
+                                        <numIndex index="0">Album List</numIndex>
+                                        <numIndex index="1">Album->list;Album->show</numIndex>
+                                    </numIndex>
+                                    <numIndex index="2" type="array">
+                                        <numIndex index="0">Random Show</numIndex>
+                                        <numIndex index="1">Album->randomShow</numIndex>
+                                    </numIndex>
+                                    <numIndex index="3" type="array">
+                                        <numIndex index="0">Random List</numIndex>
+                                        <numIndex index="1">Album->randomList; Album->show</numIndex>
+                                    </numIndex>
+                                    <numIndex index="4" type="array">
+                                        <numIndex index="0">Browser</numIndex>
+                                        <numIndex index="1">Browser->browser</numIndex>
+                                    </numIndex>
+                                    <numIndex index="5" type="array">
+                                        <numIndex index="0">Browser Show</numIndex>
+                                        <numIndex index="1">Browser->detail</numIndex>
+                                    </numIndex>
 
-				</el>
-			</ROOT>
-		</sDEF>
-	</sheets>
+                                    <numIndex index="6" type="array">
+                                        <numIndex index="0">Show</numIndex>
+                                        <numIndex index="1">Album->show</numIndex>
+                                    </numIndex>
+
+                                </items>
+                                <minitems>0</minitems>
+                                <maxitems>1</maxitems>
+                                <size>1</size>
+                            </config>
+                        </TCEforms>
+                    </switchableControllerActions>
+
+
+                    <settings.disableHighlight>
+                        <TCEforms>
+                            <label>Disable Highlight</label>
+                            <config>
+                                <type>check</type>
+                            </config>
+                        </TCEforms>
+                    </settings.disableHighlight>
+
+                    <settings.showPage>
+                        <TCEforms>
+                            <label>Page for Show</label>
+                            <config>
+                                <type>group</type>
+                                <internal_type>db</internal_type>
+                                <allowed>pages</allowed>
+                                <size>1</size>
+                                <maxitems>1</maxitems>
+                                <minitems>0</minitems>
+                            </config>
+                        </TCEforms>
+                    </settings.showPage>
+
+
+                </el>
+            </ROOT>
+        </sDEF>
+        <filter>
+            <TCEforms>
+                <sheetTitle>Filter</sheetTitle>
+            </TCEforms>
+            <type>array</type>
+            <ROOT>
+                <el>
+
+                    <settings.maxAlbums>
+                        <TCEforms>
+                            <label>Max. number of albums to display at once</label>
+                            <config>
+                                <type>input</type>
+                                <size>2</size>
+                                <eval>int</eval>
+                                <default>10</default>
+                            </config>
+                        </TCEforms>
+                    </settings.maxAlbums>
+                    <settings.gallery>
+                        <TCEforms>
+                            <label>Gallery to Display</label>
+                            <config>
+                                <type>select</type>
+                                <items type="array">
+                                    <numIndex index="0" type="array">
+                                        <numIndex index="0"></numIndex>
+                                        <numIndex index="1"></numIndex>
+                                    </numIndex>
+
+                                </items>
+                                <foreign_table>tx_yagal_domain_model_gallery</foreign_table>
+
+                            </config>
+                        </TCEforms>
+                    </settings.gallery>
+                    <settings.tags>
+                        <TCEforms>
+                            <label>Tags to Display</label>
+                            <config>
+                                <type>select</type>
+                                <size>10</size>
+                                <minitems>0</minitems>
+                                <maxitems>9999</maxitems>
+                                <autoSizeMax>30</autoSizeMax>
+                                <multiple>0</multiple>
+                                <foreign_table>tx_yagal_domain_model_tag</foreign_table>
+                            </config>
+                        </TCEforms>
+                    </settings.tags>
+
+                </el>
+            </ROOT>
+        </filter>
+        <resizing>
+            <TCEforms>
+                <sheetTitle>Filter</sheetTitle>
+            </TCEforms>
+            <type>array</type>
+            <ROOT>
+                <el>
+                    <settings.forceResizing>
+                        <TCEforms>
+                            <label>Force Resizing</label>
+                            <config>
+                                <type>check</type>
+                            </config>
+                        </TCEforms>
+                    </settings.forceResizing>
+                    <settings.maxSizeW>
+                        <TCEforms>
+                            <label>Maximum Size width</label>
+                            <config>
+                                <type>input</type>
+                                <size>20</size>
+                                <eval>string</eval>
+                                <default></default>
+                            </config>
+                        </TCEforms>
+                    </settings.maxSizeW>
+                    <settings.maxSizeH>
+                        <TCEforms>
+                            <label>Maximum Size height</label>
+                            <config>
+                                <type>input</type>
+                                <size>20</size>
+                                <eval>string</eval>
+                                <default></default>
+                            </config>
+                        </TCEforms>
+                    </settings.maxSizeH>
+                    <settings.normalSizeW>
+                        <TCEforms>
+                            <label>Normal Size widht</label>
+                            <config>
+                                <type>input</type>
+                                <size>20</size>
+                                <eval>string</eval>
+                                <default></default>
+                            </config>
+                        </TCEforms>
+                    </settings.normalSizeW>
+                    <settings.normalSizeH>
+                        <TCEforms>
+                            <label>Normal Size height</label>
+                            <config>
+                                <type>input</type>
+                                <size>20</size>
+                                <eval>string</eval>
+                                <default></default>
+                            </config>
+                        </TCEforms>
+                    </settings.normalSizeH>
+                    <settings.thumbSizeW>
+                        <TCEforms>
+                            <label>Thumbnail Size widht</label>
+                            <config>
+                                <type>input</type>
+                                <size>20</size>
+                                <eval>string</eval>
+                                <default></default>
+                            </config>
+                        </TCEforms>
+                    </settings.thumbSizeW>
+                    <settings.thumbSizeH>
+                        <TCEforms>
+                            <label>Thumbnail Size height</label>
+                            <config>
+                                <type>input</type>
+                                <size>20</size>
+                                <eval>string</eval>
+                                <default></default>
+                            </config>
+                        </TCEforms>
+                    </settings.thumbSizeH>
+                    <settings.highlighbSizeW>
+                        <TCEforms>
+                            <label>Highlight Size widht</label>
+                            <config>
+                                <type>input</type>
+                                <size>20</size>
+                                <eval>string</eval>
+                                <default></default>
+                            </config>
+                        </TCEforms>
+                    </settings.highlighbSizeW>
+                    <settings.highlighbSizeH>
+                        <TCEforms>
+                            <label>Highlight Size height</label>
+                            <config>
+                                <type>input</type>
+                                <size>20</size>
+                                <eval>string</eval>
+                                <default></default>
+                            </config>
+                        </TCEforms>
+                    </settings.highlighbSizeH>
+                </el>
+            </ROOT>
+        </resizing>
+    </sheets>
 </T3DataStructure>

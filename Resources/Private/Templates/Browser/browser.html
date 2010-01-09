@@ -1,0 +1,44 @@
+<f:layout name="default" />
+
+<f:section name="content">
+    <f:if condition="{galleries}">
+        <f:then>
+            <h2>Galleries</h2>
+            <ul>
+                <f:for each="{galleries}" as="gallery">
+                    <li>
+                    <f:if condition="{gallery.uid} == {currentGalleryUid}"><f:then><strong>-</f:then></f:if>
+                    <f:link.action action="browser" controller="Browser" arguments="{gallery: gallery}">{gallery.title}</f:link.action>
+                    <f:if condition="{gallery.uid} == {currentGalleryUid}"><f:then>-</strong></f:then></f:if>
+                    <f:if condition="{gallery.albums}">
+                        <f:then>
+                            <ul>
+                                <f:for each="{gallery.albums}" as="album">
+                                    <li>
+                                        <f:if condition="{album.uid} == {currentAlbumUid}"><f:then><strong>-</f:then></f:if>
+                                        <f:link.action action="browser" controller="Browser" arguments="{album: album}">{album.title}</f:link.action>
+                                        <f:if condition="{album.uid} == {currentAlbumUid}"><f:then>-</strong></f:then></f:if>
+                                    </li>
+                                </f:for>
+                            </ul>
+                        </f:then>
+                    </f:if>
+
+                    </li>
+                </f:for>
+            </ul>
+        </f:then>
+    </f:if>
+    <f:if condition="{albums}">
+        <f:then>
+            <h2>Albums</h2>
+            <ul>
+                <f:for each="{albums}" as="album">
+                    <li>
+                    <f:link.action action="browser" controller="Browser" arguments="{album: album}">{album.title}</f:link.action>
+                    </li>
+                </f:for>
+            </ul>
+        </f:then>
+    </f:if>
+</f:section>

@@ -61,8 +61,8 @@ class Tx_Yagal_Controller_AlbumController extends Tx_Yagal_Controller_GalleryAbs
     }
 
     public function listAction() {
-        $albums = array();
 
+        $albums = array();
         $this->view->assign('albums', $this->albumRepository->findAlbums($this->settings['gallery'], $this->settings['tags']) );
     }
     

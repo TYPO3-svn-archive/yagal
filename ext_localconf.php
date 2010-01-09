@@ -12,6 +12,7 @@ Tx_Extbase_Utility_Extension::configurePlugin(
 	array(																			// An array holding the controller-action-combinations that are accessible 
 		'Gallery' => 'index,show,browser',	// The first controller and its first action will be the default 
 		'Album' => 'index,list,show,randomShow,randomList',
+		'Browser' => 'browser,detail',
 		)
 );
 

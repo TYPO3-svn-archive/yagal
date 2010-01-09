@@ -1,0 +1,21 @@
+<f:layout name="default" />
+
+<f:section name="content">
+		<f:if condition="{album}">
+			<f:then>
+				album.title -> {album.title}
+			</f:then>
+                        <f:else>
+                            no album
+                        </f:else>
+		</f:if>
+    <br />
+    <f:if condition="{gallery}">
+			<f:then>
+				gallery.title -> {gallery.title}
+			</f:then>
+                        <f:else>
+                            no gallery
+                        </f:else>
+		</f:if>
+</f:section>
