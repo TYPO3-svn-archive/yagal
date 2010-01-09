@@ -187,6 +187,7 @@ class Tx_Yagal_Domain_Model_Gallery extends Tx_Extbase_DomainObject_AbstractEnti
 	 * @return Tx_Extbase_Persistence_ObjectStorage
 	 */
 	public function getAlbums() {
+            
 		return $this->albums;
 	}
 

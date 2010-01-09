@@ -9,8 +9,8 @@ plugin.tx_yagal {
 		normalSizeH = 200
 		thumbSizeW = 100
 		thumbSizeH = 100
-		highlighbSizeW = 200
-		highlighbSizeH = 200
+		highlightSizeW = 200
+		highlightSizeH = 200
 		
 	}
 	persistence {

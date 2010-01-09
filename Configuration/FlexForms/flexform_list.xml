@@ -217,7 +217,7 @@
                             </config>
                         </TCEforms>
                     </settings.thumbSizeH>
-                    <settings.highlighbSizeW>
+                    <settings.highlightSizeW>
                         <TCEforms>
                             <label>Highlight Size widht</label>
                             <config>
@@ -227,8 +227,8 @@
                                 <default></default>
                             </config>
                         </TCEforms>
-                    </settings.highlighbSizeW>
-                    <settings.highlighbSizeH>
+                    </settings.highlightSizeW>
+                    <settings.highlightSizeH>
                         <TCEforms>
                             <label>Highlight Size height</label>
                             <config>
@@ -238,7 +238,7 @@
                                 <default></default>
                             </config>
                         </TCEforms>
-                    </settings.highlighbSizeH>
+                    </settings.highlightSizeH>
                 </el>
             </ROOT>
         </resizing>

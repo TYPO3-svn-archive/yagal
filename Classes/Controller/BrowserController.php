@@ -57,26 +57,26 @@ class Tx_Yagal_Controller_BrowserController extends Tx_Yagal_Controller_GalleryA
         $this->administratorRepository = t3lib_div::makeInstance('Tx_Yagal_Domain_Repository_AdministratorRepository');
     }
 
-    
+
 
     public function browserAction () {
         var_export($this->request->getArguments());
 
         $currentAlbumUid = 0;
         $currentGalleryUid = 0;
-        
+
         if ($this->request->getArguments()) {
             $arg = $this->request->getArguments();
             if ($arg['album']) {
-                $currentAlbumUid =   intval($arg['album'] );
-                $aa =   $this->albumRepository->findByUid( intval($arg['album'] )) ;
-                    $currentGalleryUid = $aa->getGallery()->getUid();
+                $currentAlbumUid = intval($arg['album'] );
+                $aa = $this->albumRepository->findByUid( intval($arg['album'] )) ;
+                $currentGalleryUid = $aa->getGallery()->getUid();
             }
             if ($arg['gallery']) {
                 $currentGalleryUid =   intval($arg['gallery'] ) ;
             }
         }
-        
+
 
         $galleries = $this->galleryRepository->findAll();
         $album = $this->albumRepository->findAll();
@@ -87,30 +87,37 @@ class Tx_Yagal_Controller_BrowserController extends Tx_Yagal_Controller_GalleryA
         $this->view->assign('currentGalleryUid', $currentGalleryUid );
     }
 
-   
+
     public function detailAction () {
-       
+
 
 
         if ($this->request->getArguments()) {
             $arg = $this->request->getArguments();
             if ($arg['album']) {
                 $album =  $this->albumRepository->findByUid( intval($arg['album'] )  );
+                echo "album";
+                
+                $this->view->assign('albumDetail', $album );
+
+                var_export($this->settings);
+                $fotos = $this->galleryBusiness->getDir($album, $this->settings);
+                $this->view->assign('fotos', $fotos);
             }
             if ($arg['gallery']) {
                 $gallery =  $this->galleryRepository->findByUid( intval($arg['gallery'] )  );
+                echo "gallery";
+                $this->view->assign('gallery', $gallery );
             }
+           
+        }
+        else {
+            echo "galleries";
+            $galleries = $this->galleryRepository->findAll();
+            $this->view->assign('galleries', $galleries );
         }
 
-        //$album = $this->arguments->getArgument('album');
-        //$gallery = $this->arguments->getArgument('gallery');
-        if ($album) {
-            $this->view->assign('album', $album );
-            $this->view->assign('gallery', $album->getGallery() );
-        }
-        if ($gallery) {
-            $this->view->assign('gallery', $gallery );
-        }
+
     }
 
 

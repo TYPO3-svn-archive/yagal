@@ -33,7 +33,7 @@ class Tx_Yagal_Business_GalleryBusiness {
 
         // need to resize?
         if ($this->forceResize || $resize) {
-            t3lib_div::devLog('resizing');
+            echo('resizing<br>');
             $img = array();
             $img['file'] = $dir.  $file;
             $img['file.']['maxW'] = $w;
@@ -58,6 +58,7 @@ class Tx_Yagal_Business_GalleryBusiness {
         $dir = $album-> getFilepath();
         $this->cObj = t3lib_div::makeInstance('tslib_cObj');
 
+        //$this->forceResize = true;
           // force resizing
         if ($album->getResize()) {
             $this->forceResize = true;
@@ -76,17 +77,16 @@ class Tx_Yagal_Business_GalleryBusiness {
             foreach ($list as $item) {
 
                 $originalUrl = $dir.$item;
-                $size = $this->getSize($settings['maxSize']);
-                $this->resize($item, $dir, $size['w'], $size['h']);
-                $maximalUrl = $dir.'sized/'.$size['w'].'.'.$size['h'].'/'.$item;
 
-                $size = $this->getSize($settings['normalSize']);
-                $this->resize($item, $dir, $size['w'], $size['h']);
-                $normalUrl = $dir.'sized/'.$size['w'].'.'.$size['h'].'/'.$item;
+                $this->resize($item, $dir, $settings['maxSizeW'], $settings['maxSizeH']);
+                $maximalUrl = $dir.'sized/'.$settings['maxSizeW'].'.'.$settings['maxSizeH'].'/'.$item;
 
-                $size = $this->getSize($settings['thumbSize']);
-                $this->resize($item, $dir, $size['w'], $size['h']);
-                $thumbUrl = $dir.'sized/'.$size['w'].'.'.$size['h'].'/'.$item;
+                $this->resize($item, $dir, $settings['normalSizeW'], $settings['normalSizeH']);
+                $normalUrl = $dir.'sized/'.$settings['normalSizeW'].'.'.$settings['normalSizeH'].'/'.$item;
+
+               
+                $this->resize($item, $dir, $settings['thumbSizeW'], $settings['thumbSizeH']);
+                $thumbUrl = $dir.'sized/'.$settings['thumbSizeW'].'.'.$settings['thumbSizeH'].'/'.$item;
 
                 $foto = array('originalUrl' => $originalUrl,
                     'maximalUrl' => $maximalUrl,
@@ -101,19 +101,7 @@ class Tx_Yagal_Business_GalleryBusiness {
 
     }
 
-    private function getSize($size) {
-        $w = 0;
-        $h = 0;
-        //echo $size;
-        if ($size) {
-            $sizes = explode("*", $size);
-            $w = intval($sizes[0]);
-            $h = intval($sizes[1]);
-        }
-
-        return array('w' => $w, 'h' => $h);
-    }
-
+   
 
 }
 ?>

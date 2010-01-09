@@ -1,21 +1,93 @@
 <f:layout name="default" />
 
 <f:section name="content">
-		<f:if condition="{album}">
-			<f:then>
-				album.title -> {album.title}
-			</f:then>
-                        <f:else>
-                            no album
-                        </f:else>
-		</f:if>
-    <br />
     <f:if condition="{gallery}">
-			<f:then>
-				gallery.title -> {gallery.title}
-			</f:then>
-                        <f:else>
-                            no gallery
-                        </f:else>
-		</f:if>
+        <f:then>
+
+            <dt>
+                {gallery.title}<br>
+                <img src="{gallery.highlight}" />
+
+
+            </dt>
+            Albums:<br>
+            <f:for each="{gallery.albums}" as="album">
+                <dt>
+                <f:link.action action="browser" controller="Browser" arguments="{album: album}">{album.title}</f:link.action>
+                </dt>
+                <dd>{album.filepath}</dd>
+                <dd>
+                <f:link.action action="browser" controller="Browser" arguments="{album: album}">
+                    <img src="{album.highlight}" />
+                </f:link.action>
+                </dd>
+                <dd><f:format.html>{album.content}</f:format.html></dd>
+                <dd><f:render partial="albumMetaData" arguments="{album: album}"/></dd>
+                <dd><f:render partial="albumTags" arguments="{album: album}"/></dd>
+                <dd>
+                <f:link.action controller="Album" action="show" arguments="{album : album}"><f:translate key="read_more">read more &gt;&gt;</f:translate></f:link.action><br />
+                </dd>
+            </f:for>
+        </f:then>
+        <f:else>
+            no gallery
+        </f:else>
+    </f:if>
+
+    <br />
+
+
+
+
+    <f:if condition="{albumDetail}">
+        <f:then>
+            <h3>
+			{albumDetail.title}
+        </h3>
+        <p>{albumDetail.filepath}</p>
+         <f:render partial="shoothGallery" arguments="{fotos: fotos, album: albumDetail}"/>
+        <p class="bodytext"><f:format.html>{albumDetail.content}</f:format.html></p>
+        <p class="bodytext">By: {albumDetail.photographer.fullName}</p>
+        <f:render partial="albumTags" arguments="{album: albumDetail}"/>
+        <f:if condition="{albumDetail.relatedAlbums}">
+            <div>Related albums:</div>
+            <ul class="tx-galleryexample-related">
+                <f:for each="{albumDetail.relatedAlbums}" as="relatedAlbum">
+                    <li>
+                    <f:link.action action="browser" controller="Browser" arguments="{album: relatedAlbum, gallery: album.gallery}">{relatedAlbum.title}</f:link.action>
+                    </li>
+                </f:for>
+            </ul>
+        </f:if>
+        <div class="tx-galleryexample-single-backlink">
+            <f:link.action action="index" controller="Album" arguments="{gallery: albumDetail.gallery}">Back</f:link.action>
+        </div>
+
+        </f:then>
+        <f:else>
+            no album
+        </f:else>
+    </f:if>
+
+
+     <f:if condition="{galleries}">
+        <f:then>
+            <f:for each="{galleries}" as="gallery">
+                <dt>
+                <f:link.action action="browser" controller="Browser"	arguments="{gallery : gallery}">
+							{gallery.title}<br /> (<f:count subject="{gallery.albums}" />)
+                    <img src="{gallery.highlight}" />
+                </f:link.action>
+
+                </dt>
+                <dd>
+                <f:format.html>{gallery.description}</f:format.html>
+                <dd>
+            </f:for>
+        </f:then>
+        <f:else>
+            blubber
+        </f:else>
+    </f:if>
+
 </f:section>
