@@ -44,7 +44,7 @@ class Tx_Yagal_Controller_AlbumController extends Tx_Yagal_Controller_GalleryAbs
      * @return void
      */
     public function initializeAction() {
-    	$this->init();
+        $this->init();
         $this->albumRepository = t3lib_div::makeInstance('Tx_Yagal_Domain_Repository_AlbumRepository');
         $this->personRepository = t3lib_div::makeInstance('Tx_Yagal_Domain_Repository_PersonRepository');
     }
@@ -62,37 +62,46 @@ class Tx_Yagal_Controller_AlbumController extends Tx_Yagal_Controller_GalleryAbs
 
     public function listAction() {
 
-        $albums = array();
-        $this->view->assign('albums', $this->albumRepository->findAlbums($this->settings['gallery'], $this->settings['tags']) );
+        $albums = $this->albumRepository->findAlbums($this->settings['gallery'], $this->settings['tags']);
+
+        foreach ($albums as $album) {
+            echo 'resize highlight<br>';
+            $this->galleryBusiness->resizeHighlight($album->getHighlight(), $this->settings);
+        }
+
+        $this->view->assign('albums',  $albums);
     }
-    
+
     public function randomListAction() {
         $albums = array();
-		$albums = $this->albumRepository->findAlbums($this->settings['gallery'], $this->settings['tags']);
-		$cont = count($albums);
-		
-		$a[1] =  $albums[rand (0, count($albums)-1)];
-		
-		$showPage = null;
-		
-		if ($this->settings['showPage']) $showPage = intval( $this->settings['showPage'], 10); 
-		
-        //var_export($showPage); 
+        $albums = $this->albumRepository->findAlbums($this->settings['gallery'], $this->settings['tags']);
+        $cont = count($albums);
+
+        $a[1] =  $albums[rand (0, count($albums)-1)];
+
+        $showPage = null;
+
+        if ($this->settings['showPage']) $showPage = intval( $this->settings['showPage'], 10);
+
+
+       
+
+        //var_export($showPage);
         $this->view->assign('albums', $a );
         $this->view->assign('showPage', $showPage );
     }
-    
+
     public function randomShowAction() {
-    	//echo 'randomShow';
+        //echo 'randomShow';
         $albums = array();
-		$albums = $this->albumRepository->findAlbums($this->settings['gallery'], $this->settings['tags']);
-		$cont = count($albums);
-		
-		$album =  $albums[rand (0, count($albums)-1)];
+        $albums = $this->albumRepository->findAlbums($this->settings['gallery'], $this->settings['tags']);
+        $cont = count($albums);
+
+        $album =  $albums[rand (0, count($albums)-1)];
         $this->showAction( $album );
     }
-    
-    
+
+
     /**
      * Action that displays one single album
      *

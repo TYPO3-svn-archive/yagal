@@ -1,5 +1,6 @@
  # Plugin configuration
 plugin.tx_yagal {
+        blub = 12
 	settings {
 		 # maximum number of albums to display at once
 		maxAlbums = 3
@@ -11,6 +12,8 @@ plugin.tx_yagal {
 		thumbSizeH = 100
 		highlightSizeW = 200
 		highlightSizeH = 200
+		test = 200
+
 		
 	}
 	persistence {

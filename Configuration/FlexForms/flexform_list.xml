@@ -55,14 +55,14 @@
                     </switchableControllerActions>
 
 
-                    <settings.disableHighlight>
+                    <settings.piDisableHighlight>
                         <TCEforms>
                             <label>Disable Highlight</label>
                             <config>
                                 <type>check</type>
                             </config>
                         </TCEforms>
-                    </settings.disableHighlight>
+                    </settings.piDisableHighlight>
 
                     <settings.showPage>
                         <TCEforms>
@@ -90,7 +90,7 @@
             <ROOT>
                 <el>
 
-                    <settings.maxAlbums>
+                    <settings.piMaxAlbums>
                         <TCEforms>
                             <label>Max. number of albums to display at once</label>
                             <config>
@@ -100,7 +100,7 @@
                                 <default>10</default>
                             </config>
                         </TCEforms>
-                    </settings.maxAlbums>
+                    </settings.piMaxAlbums>
                     <settings.gallery>
                         <TCEforms>
                             <label>Gallery to Display</label>
@@ -151,7 +151,7 @@
                             </config>
                         </TCEforms>
                     </settings.forceResizing>
-                    <settings.maxSizeW>
+                    <settings.piMaxSizeW>
                         <TCEforms>
                             <label>Maximum Size width</label>
                             <config>
@@ -161,8 +161,8 @@
                                 <default></default>
                             </config>
                         </TCEforms>
-                    </settings.maxSizeW>
-                    <settings.maxSizeH>
+                    </settings.piMaxSizeW>
+                    <settings.piMaxSizeH>
                         <TCEforms>
                             <label>Maximum Size height</label>
                             <config>
@@ -172,8 +172,8 @@
                                 <default></default>
                             </config>
                         </TCEforms>
-                    </settings.maxSizeH>
-                    <settings.normalSizeW>
+                    </settings.piMaxSizeH>
+                    <settings.piNormalSizeW>
                         <TCEforms>
                             <label>Normal Size widht</label>
                             <config>
@@ -183,8 +183,8 @@
                                 <default></default>
                             </config>
                         </TCEforms>
-                    </settings.normalSizeW>
-                    <settings.normalSizeH>
+                    </settings.piNormalSizeW>
+                    <settings.piNormalSizeH>
                         <TCEforms>
                             <label>Normal Size height</label>
                             <config>
@@ -194,8 +194,8 @@
                                 <default></default>
                             </config>
                         </TCEforms>
-                    </settings.normalSizeH>
-                    <settings.thumbSizeW>
+                    </settings.piNormalSizeH>
+                    <settings.piThumbSizeW>
                         <TCEforms>
                             <label>Thumbnail Size widht</label>
                             <config>
@@ -205,8 +205,8 @@
                                 <default></default>
                             </config>
                         </TCEforms>
-                    </settings.thumbSizeW>
-                    <settings.thumbSizeH>
+                    </settings.piThumbSizeW>
+                    <settings.piThumbSizeH>
                         <TCEforms>
                             <label>Thumbnail Size height</label>
                             <config>
@@ -216,8 +216,8 @@
                                 <default></default>
                             </config>
                         </TCEforms>
-                    </settings.thumbSizeH>
-                    <settings.highlightSizeW>
+                    </settings.piThumbSizeH>
+                    <settings.piHighlightSizeW>
                         <TCEforms>
                             <label>Highlight Size widht</label>
                             <config>
@@ -227,8 +227,8 @@
                                 <default></default>
                             </config>
                         </TCEforms>
-                    </settings.highlightSizeW>
-                    <settings.highlightSizeH>
+                    </settings.piHighlightSizeW>
+                    <settings.piHighlightSizeH>
                         <TCEforms>
                             <label>Highlight Size height</label>
                             <config>
@@ -238,7 +238,7 @@
                                 <default></default>
                             </config>
                         </TCEforms>
-                    </settings.highlightSizeH>
+                    </settings.piHighlightSizeH>
                 </el>
             </ROOT>
         </resizing>
