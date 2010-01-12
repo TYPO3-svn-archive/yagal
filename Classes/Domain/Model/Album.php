@@ -73,6 +73,11 @@ class Tx_Yagal_Domain_Model_Album extends Tx_Extbase_DomainObject_AbstractEntity
 	protected $highlight;
 
 	/**
+	 * @var string
+	 */
+	private $highlight_sized;
+
+	/**
 	 * @var int
 	 */
 	protected $resize;
@@ -282,6 +287,27 @@ class Tx_Yagal_Domain_Model_Album extends Tx_Extbase_DomainObject_AbstractEntity
 	public function setHighlight($highlight) {
 		$this->highlight = $highlight;
 	}
+
+
+        	/**
+	 * Getter for highlight
+	 *
+	 * @return string
+	 */
+	public function getSizedHighlight() {
+		return $this->highlight_sized;
+	}
+
+	/**
+	 * Sets the highlight for this album
+	 *
+	 * @param string $highlight
+	 * @return void
+	 */
+	public function setSizedHighlight($highlight) {
+		$this->highlight_sized = $highlight;
+	}
+
 
 	/**
 	 * Getter for resize

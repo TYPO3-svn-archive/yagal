@@ -66,7 +66,7 @@ class Tx_Yagal_Controller_AlbumController extends Tx_Yagal_Controller_GalleryAbs
 
         foreach ($albums as $album) {
             echo 'resize highlight<br>';
-            $this->galleryBusiness->resizeHighlight($album->getHighlight(), $this->settings);
+            $this->galleryBusiness->resizeHighlight($album, $this->settings);
         }
 
         $this->view->assign('albums',  $albums);

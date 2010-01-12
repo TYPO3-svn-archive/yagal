@@ -14,7 +14,7 @@
 							<f:link.action action="show" controller="Album" arguments="{album: album, gallery: gallery}"  pageUid="{settings.showPage}">{album.title}</f:link.action>
 						</dt>
 						<dd>{album.filepath}</dd>
-						<dd><img src="{album.highlight}"></img></dd>
+						<dd><img src="{album.sizedHighlight}"></img></dd>
 						<dd><f:format.crop maxCharacters="100">{album.content}</f:format.crop></dd>
 						<dd><f:render partial="albumMetaData" arguments="{album: album}"/></dd>
 						<dd><f:render partial="albumTags" arguments="{album: album}"/></dd>

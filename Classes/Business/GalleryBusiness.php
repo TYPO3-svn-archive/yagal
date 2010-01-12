@@ -13,10 +13,10 @@
 class Tx_Yagal_Business_GalleryBusiness {
 
 
-    public function resizeHighlight($highLightFoto, $settings) {
+    public function resizeHighlight(Tx_Yagal_Domain_Model_Album $album, $settings) {
 
 
-        $pieces = explode('/', $highLightFoto);
+        $pieces = explode('/', $album->getHighlight());
         $item = array_pop($pieces);
         $dir = implode('/', $pieces) . '/';
 
@@ -27,7 +27,7 @@ class Tx_Yagal_Business_GalleryBusiness {
         $size['w'] = $settings['piHighlightSizeW'] ? $settings['piHighlightSizeW'] : $settings['highlightSizeW'];
         $size['h'] = $settings['piHighlightSizeH'] ? $settings['piHighlightSizeH'] : $settings['highlightSizeH'];
         $this->resize($item, $dir, $size['w'], $size['h']);
-        $resizedUrl = $dir.'sized/'.$size['w'].'.'.$size['h'].'/'.$item;
+        $album->setSizedHighlight($dir.'sized/'.$size['w'].'.'.$size['h'].'/'.$item);
     }
 
     private function resize($file, $dir, $w, $h) {
