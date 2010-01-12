@@ -108,10 +108,17 @@ class Tx_Yagal_Business_GalleryBusiness {
                 $this->resize($item, $dir, $settings['thumbSizeW'], $settings['thumbSizeH']);
                 $thumbUrl = $dir.'sized/'.$settings['thumbSizeW'].'.'.$settings['thumbSizeH'].'/'.$item;
 
-                $foto = array('originalUrl' => $originalUrl,
-                        'maximalUrl' => $maximalUrl,
-                        'normalUrl' => $normalUrl,
-                        'thumbUrl' => $thumbUrl);
+//                $foto = array('originalUrl' => $originalUrl,
+//                        'maximalUrl' => $maximalUrl,
+//                        'normalUrl' => $normalUrl,
+//                        'thumbUrl' => $thumbUrl);
+
+                $foto = t3lib_div::makeInstance('Tx_Yagal_Domain_Model_Foto');
+                $foto->setOriginal($originalUrl);
+                $foto->setNormal($normalUrl);
+                $foto->setMaximal($maximalUrl);
+                $foto->setThumbnail($thumbUrl);
+
 
                 array_push($res, $foto);
             }

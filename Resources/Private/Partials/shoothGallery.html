@@ -18,17 +18,16 @@
         }
         window.addEvent('domready',startGallery);
     </script>
-    <div id="myGallery" style="width:830px; height: 600px">
+    <div id="myGallery" style="width:550px; height: 400px">
         <f:for each="{fotos}" as="foto">
             <div class="imageElement">
                 <h3>Item 1 Title</h3>
-                <p><gallery:exif url="{foto.originalUrl}"/></p>
-                <a href="{foto.maximalUrl}" title="open image" class="open"></a>
-                <img src="{foto.maximalUrl}" class="full" />
-                <img src="{foto.thumbUrl}" class="thumbnail" />
+                <p><gallery:exif url="{foto.original}"/></p>
+                <a href="{foto.maximal}" title="open image" class="open"></a>
+                <img src="{foto.maximal}" class="full" />
+                <img src="{foto.thumbnail}" class="thumbnail" />
             </div>
         </f:for>
     </div>
-    <div id="myCarousel" class="jdGallery" style="width:830px; height: 115px; margin-top:20px">
-    </div>
+    <div id="myCarousel" class="jdGallery" style="width:550px; height: 115px; margin-top:20px"></div>
 </div>
