@@ -28,10 +28,6 @@
                                         <numIndex index="0">Random Show</numIndex>
                                         <numIndex index="1">Album->randomShow</numIndex>
                                     </numIndex>
-                                    <numIndex index="3" type="array">
-                                        <numIndex index="0">Random List</numIndex>
-                                        <numIndex index="1">Album->randomList; Album->show</numIndex>
-                                    </numIndex>
                                     <numIndex index="4" type="array">
                                         <numIndex index="0">Browser</numIndex>
                                         <numIndex index="1">Browser->browser</numIndex>
@@ -136,9 +132,83 @@
                 </el>
             </ROOT>
         </filter>
+        <list>
+            <TCEforms>
+                <sheetTitle>List</sheetTitle>
+            </TCEforms>
+            <type>array</type>
+            <ROOT>
+                <el>
+
+                    <settings.piListMode>
+                        <TCEforms>
+                            <label>List mode</label>
+                             <config>
+                                <type>select</type>
+                                <items type="array">
+                                    <numIndex index="0" type="array">
+                                        <numIndex index="0">Latest</numIndex>
+
+                                        <numIndex index="1">latest</numIndex>
+
+                                    </numIndex>
+                                    <numIndex index="1" type="array">
+                                        <numIndex index="0">Random</numIndex>
+                                        <numIndex index="1">random</numIndex>
+                                    </numIndex>
+                                </items>
+                                <minitems>0</minitems>
+                                <maxitems>1</maxitems>
+                                <size>1</size>
+                            </config>
+                        </TCEforms>
+                    </settings.piListMode>
+
+                </el>
+            </ROOT>
+        </list>
+        <show>
+            <TCEforms>
+                <sheetTitle>List</sheetTitle>
+            </TCEforms>
+            <type>array</type>
+            <ROOT>
+                <el>
+
+                    <settings.piShowMode>
+                        <TCEforms>
+                            <label>Show mode</label>
+                             <config>
+                                <type>select</type>
+                                <items type="array">
+                                    <numIndex index="0" type="array">
+                                        <numIndex index="0">Single</numIndex>
+
+                                        <numIndex index="1">single</numIndex>
+
+                                    </numIndex>
+                                    <numIndex index="1" type="array">
+                                        <numIndex index="0">Random</numIndex>
+                                        <numIndex index="1">random</numIndex>
+                                    </numIndex>
+                                    <numIndex index="2" type="array">
+                                        <numIndex index="0">Browser</numIndex>
+                                        <numIndex index="1">Browser</numIndex>
+                                    </numIndex>
+                                </items>
+                                <minitems>0</minitems>
+                                <maxitems>1</maxitems>
+                                <size>1</size>
+                            </config>
+                        </TCEforms>
+                    </settings.piShowMode>
+
+                </el>
+            </ROOT>
+        </show>
         <resizing>
             <TCEforms>
-                <sheetTitle>Filter</sheetTitle>
+                <sheetTitle>Resizing</sheetTitle>
             </TCEforms>
             <type>array</type>
             <ROOT>
