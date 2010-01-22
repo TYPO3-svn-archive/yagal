@@ -37,8 +37,8 @@ class Tx_Yagal_Business_GalleryBusiness {
         $item = array_pop($pieces);
         $dir = implode('/', $pieces) . '/';
 
-        echo 'dir:'.$dir.'<br>';
-        echo '$item:'.$item.'<br>';
+        //echo 'dir:'.$dir.'<br>';
+        //echo '$item:'.$item.'<br>';
 
 
         $size['w'] = $settings['piHighlightSizeW'] ? $settings['piHighlightSizeW'] : $settings['highlightSizeW'];
@@ -56,7 +56,7 @@ class Tx_Yagal_Business_GalleryBusiness {
 
     private function resize($file, $dir, $w, $h) {
 
-        if(true) {
+        if(false) {
            echo "$file, $dir, $w, $h<br>";
         }
 
@@ -72,7 +72,7 @@ class Tx_Yagal_Business_GalleryBusiness {
 
         // need to resize?
         if ($this->forceResize || $resize) {
-            echo('resizing<br>');
+            //echo('resizing<br>');
             $img = array();
             $img['file'] = $dir.  $file;
             $img['file.']['maxW'] = $w;
