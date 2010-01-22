@@ -10,6 +10,7 @@
 					<dt>
 						<f:link.action action="index" controller="Album"	arguments="{gallery : gallery}">
 							{gallery.title}<br /> (<f:count subject="{gallery.albums}" />)
+                                                        <img src="{gallery.sizedHighlight}" />
 							<img src="{gallery.highlight}" />
 						</f:link.action>
 <!--						<f:debug>{gallery}</f:debug>-->

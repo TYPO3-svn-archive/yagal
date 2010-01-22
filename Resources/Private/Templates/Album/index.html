@@ -16,6 +16,7 @@
 						<dd>{album.filepath}</dd>
 						<dd>
                          <f:link.action action="show" controller="Album" arguments="{album: album, gallery: gallery}">
+                             <img src="{album.sizedHighlight}" />
                              <img src="{album.highlight}" />
                          </f:link.action>
                         </dd>

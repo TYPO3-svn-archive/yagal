@@ -56,6 +56,7 @@ class Tx_Yagal_Controller_AlbumController extends Tx_Yagal_Controller_GalleryAbs
      * @return string
      */
     public function indexAction(Tx_Yagal_Domain_Model_Gallery $gallery) {
+        $gallery  = $this->galleryBusiness->prepareGallery ( $gallery, $this->settings );
         $this->view->assign('gallery', $gallery);
         $this->view->assign('recentAlbums', $this->albumRepository->findRecentByGallery($gallery, $this->settings['maxAlbums']));
     }

@@ -13,10 +13,27 @@
 class Tx_Yagal_Business_GalleryBusiness {
 
 
-    public function resizeHighlight(Tx_Yagal_Domain_Model_Album $album, $settings) {
+    public function prepareGalleries ( $galleries, $settings ) {
+        foreach ($galleries as $gallery) {
+            $gallery->test = "hallo";
 
+             $gallery->setSizedHighlight( $this->resizeHighlight($gallery->getHighlight(), $settings) );
 
-        $pieces = explode('/', $album->getHighlight());
+        }
+        return $galleries;
+    }
+
+    public function prepareGallery ( Tx_Yagal_Domain_Model_Gallery $gallery, $settings ) {
+        foreach ($gallery->getAlbums() as $album) {
+
+             $album->setSizedHighlight( $this->resizeHighlight($album->getHighlight(), $settings) );
+
+        }
+        return $gallery;
+    }
+
+    public function resizeHighlight($highlight, $settings) {
+        $pieces = explode('/', $highlight);
         $item = array_pop($pieces);
         $dir = implode('/', $pieces) . '/';
 
@@ -27,8 +44,15 @@ class Tx_Yagal_Business_GalleryBusiness {
         $size['w'] = $settings['piHighlightSizeW'] ? $settings['piHighlightSizeW'] : $settings['highlightSizeW'];
         $size['h'] = $settings['piHighlightSizeH'] ? $settings['piHighlightSizeH'] : $settings['highlightSizeH'];
         $this->resize($item, $dir, $size['w'], $size['h']);
-        $album->setSizedHighlight($dir.'sized/'.$size['w'].'.'.$size['h'].'/'.$item);
+        return $dir.'sized/'.$size['w'].'.'.$size['h'].'/'.$item;
     }
+
+
+
+    public function prepareAlbum(Tx_Yagal_Domain_Model_Album $album, $settings) {
+        $album->setSizedHighlight($this->resizeHighlight($album->getHighlight(), $settings));
+    }
+
 
     private function resize($file, $dir, $w, $h) {
 

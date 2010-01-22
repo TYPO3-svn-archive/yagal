@@ -71,6 +71,7 @@ class Tx_Yagal_Controller_GalleryController extends Tx_Yagal_Controller_GalleryA
             $galleries = $this->galleryRepository->findAll();
         }
 
+        $galleries  = $this->galleryBusiness->prepareGalleries ( $galleries, $this->settings );
         $this->view->assign('galleries', $galleries );
         
     }
