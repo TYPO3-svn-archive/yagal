@@ -124,18 +124,13 @@ class Tx_Yagal_Business_GalleryBusiness {
                 $size['w'] = $settings['piNormalSizeW'] ? $settings['piNormalSizeW'] : $settings['normalSizeW'];
                 $size['h'] = $settings['piNormalSizeH'] ? $settings['piNormalSizeH'] : $settings['normalSizeH'];
                 $this->resize($item, $dir, $size['w'], $size['h']);
-                $maximalUrl = $dir.'sized/'.$size['w'].'.'.$size['h'].'/'.$item;
+                $normalUrl = $dir.'sized/'.$size['w'].'.'.$size['h'].'/'.$item;
 
 
                 $size['w'] = $settings['piThumbSizeW'] ? $settings['piThumbSizeW'] : $settings['thumbSizeW'];
                 $size['h'] = $settings['piThumbSizeH'] ? $settings['piThumbSizeH'] : $settings['thumbSizeH'];
                 $this->resize($item, $dir, $settings['thumbSizeW'], $settings['thumbSizeH']);
                 $thumbUrl = $dir.'sized/'.$settings['thumbSizeW'].'.'.$settings['thumbSizeH'].'/'.$item;
-
-//                $foto = array('originalUrl' => $originalUrl,
-//                        'maximalUrl' => $maximalUrl,
-//                        'normalUrl' => $normalUrl,
-//                        'thumbUrl' => $thumbUrl);
 
                 $foto = t3lib_div::makeInstance('Tx_Yagal_Domain_Model_Foto');
                 $foto->setOriginal($originalUrl);

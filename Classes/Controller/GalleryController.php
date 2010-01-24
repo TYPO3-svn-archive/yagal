@@ -67,6 +67,7 @@ class Tx_Yagal_Controller_GalleryController extends Tx_Yagal_Controller_GalleryA
 
         if ($this->settings['gallery']) {
             $galleries = array( $this->galleryRepository->findByUid( intval($this->settings['gallery']) ));
+            $this->redirect('index', 'Album', null, array('gallery' => $this->settings['gallery']) );
         } else {
             $galleries = $this->galleryRepository->findAll();
         }
