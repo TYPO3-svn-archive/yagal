@@ -47,6 +47,7 @@ class Tx_Yagal_Controller_AlbumController extends Tx_Yagal_Controller_GalleryAbs
         $this->init();
         $this->albumRepository = t3lib_div::makeInstance('Tx_Yagal_Domain_Repository_AlbumRepository');
         $this->personRepository = t3lib_div::makeInstance('Tx_Yagal_Domain_Repository_PersonRepository');
+        
     }
 
     /**
